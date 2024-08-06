@@ -29,6 +29,9 @@
       type="text/css"
     />
     <link href="css/postal-code-search-box.css" rel ="stylesheet" type="text/css" />
+
+    <script src="scripts/select_low_score_question.js"></script>
+  
   </head>
 
   <body>
@@ -36,7 +39,8 @@
       surveyhash="orviiaprzc"
       tenant="silverlining"
     ></survalyzer-survey>
-
+  
+  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://survalyzer.survalyzer.eu/assets/survalyzer-survey.js"></script>
     
@@ -46,7 +50,9 @@
           const listSearchHandler = () => {
             console.log("Current Page Index: ", api.fn.getCurrentPageIndex() );
             
-            
+            if (api.fn.getCurrentPageIndex() == 18) {
+              search_Q10_A();
+            }
           }
           
           api.events.subscribe('next', listSearchHandler);

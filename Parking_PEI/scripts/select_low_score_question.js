@@ -114,20 +114,20 @@ function search_Q13()
     [7, 10], [8, 10], [9, 10], [10, 10], [11, 10], [12, 10], [13, 10]
   ];
 
-  if (api.fn.answers().qQ13_1) Q13_answers[0][1] = api.fn.answers().qQ13_1;
-  if (api.fn.answers().qQ13_2) Q13_answers[1][1] = api.fn.answers().qQ13_2;
-  if (api.fn.answers().qQ13_3) Q13_answers[2][1] = api.fn.answers().qQ13_3;
-  if (api.fn.answers().qQ13_4) Q13_answers[3][1] = api.fn.answers().qQ13_4;
-  if (api.fn.answers().qQ13_5) Q13_answers[4][1] = api.fn.answers().qQ13_5;
-  //if (api.fn.answers().qQ13_6) Q13_answers[5][1] = api.fn.answers().qQ13_6;
+  if (api.fn.answers().Q13_1) Q13_answers[0][1] = api.fn.answers().Q13_1;
+  if (api.fn.answers().Q13_2) Q13_answers[1][1] = api.fn.answers().Q13_2;
+  if (api.fn.answers().Q13_3) Q13_answers[2][1] = api.fn.answers().Q13_3;
+  if (api.fn.answers().Q13_4) Q13_answers[3][1] = api.fn.answers().Q13_4;
+  if (api.fn.answers().Q13_5) Q13_answers[4][1] = api.fn.answers().Q13_5;
+  //if (api.fn.answers().Q13_6) Q13_answers[5][1] = api.fn.answers().Q13_6;
 
-  if (api.fn.answers().qQ13_7) Q13_answers[6][1] = api.fn.answers().qQ13_7;
-  //if (api.fn.answers().qQ13_8) Q13_answers[7][1] = api.fn.answers().qQ13_8;
-  if (api.fn.answers().qQ13_9) Q13_answers[8][1] = api.fn.answers().qQ13_9;
-  //if (api.fn.answers().qQ13_10) Q13_answers[9][1] = api.fn.answers().qQ13_10;
-  if (api.fn.answers().qQ13_11) Q13_answers[10][1] = api.fn.answers().qQ13_11;
-  if (api.fn.answers().qQ13_12) Q13_answers[11][1] = api.fn.answers().qQ13_12;
-  //if (api.fn.answers().qQ13_13) Q13_answers[12][1] = api.fn.answers().qQ13_13;
+  if (api.fn.answers().Q13_7) Q13_answers[6][1] = api.fn.answers().Q13_7;
+  //if (api.fn.answers().Q13_8) Q13_answers[7][1] = api.fn.answers().Q13_8;
+  if (api.fn.answers().Q13_9) Q13_answers[8][1] = api.fn.answers().Q13_9;
+  //if (api.fn.answers().Q13_10) Q13_answers[9][1] = api.fn.answers().Q13_10;
+  if (api.fn.answers().Q13_11) Q13_answers[10][1] = api.fn.answers().Q13_11;
+  if (api.fn.answers().Q13_12) Q13_answers[11][1] = api.fn.answers().Q13_12;
+  //if (api.fn.answers().Q13_13) Q13_answers[12][1] = api.fn.answers().Q13_13;
 
   console.log("Q13_answers: ", Q13_answers); 
 

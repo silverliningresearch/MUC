@@ -143,7 +143,7 @@ function prepareInterviewData() {
     var interview_year = interview["InterviewDate"].substring(0,4);
     var interview_month = interview["InterviewDate"].substring(5,7);//"2023-04-01",
 
-    if (isCurrentMonth(interview.InterviewDate))
+    //if (isCurrentMonth(interview.InterviewDate))
     {
       if (interview["Location"]) {
         var quota_id;
@@ -170,5 +170,5 @@ function prepareInterviewData() {
   }
 
  
-   //console.log("quota_data: ", quota_data);
+   console.log("quota_data: ", quota_data);
 }

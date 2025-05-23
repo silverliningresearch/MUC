@@ -57,7 +57,7 @@
         var data = new google.visualization.DataTable();
 
         //define header
-        data.addColumn('string', 'Survey');
+        data.addColumn('string', 'Location');
         //data.addColumn('string', 'Location');
         data.addColumn('number', 'Quota');
         data.addColumn('number', 'Completed');
@@ -86,10 +86,10 @@
           //row.Terminal,
           "TOTAL", 
           //row.Location,
-          Number(500),
+          Number(725),
           Number(total_completed), 
-          Number(total_completed-500), 
-          Number((((total_completed-500) / 500)*100).toFixed(0))
+          Number(total_completed-725), 
+          Number((((total_completed-725) / 725)*100).toFixed(0))
         ]
         ]);
 
@@ -102,7 +102,7 @@
           'controlType': 'CategoryFilter',
           'containerId': 'filter_div',
           'options': {
-            'filterColumnLabel': 'Survey'
+            'filterColumnLabel': 'Location'
           }
         });
   

@@ -150,13 +150,30 @@ function prepareInterviewData() {
         var location = "";
         var survey  = "";
 
-        if (interview["Location"] == 8) quota_id = "P43";
-        if (interview["Location"] == 11) quota_id = "P51";
         if (interview["Location"] == 2) quota_id = "P3";
+        if (interview["Location"] == 4) quota_id = "P7";
         if (interview["Location"] == 5) quota_id = "P20";
-        if (interview["Location"] == 6) quota_id = "P26";
-        if ((interview["Location"] == 17) || (interview["Location"] == 18)) quota_id = "T1C";
-        if ((interview["Location"] == 21) || (interview["Location"] == 22))quota_id = "T2";        
+        if (interview["Location"] == 6) quota_id = "P26";        
+        if (interview["Location"] == 7) quota_id = "P41";
+        if (interview["Location"] == 8) quota_id = "P43";
+
+        if (interview["Location"] == 9) quota_id = "P44";
+
+        if (interview["Location"] == 11) quota_id = "P51";
+
+        if ((interview["Location"] == 17) || (interview["Location"] == 18)) quota_id = "T1-C";
+        if ((interview["Location"] == 19) || (interview["Location"] == 20))quota_id = "T1-D";    
+
+        if ((interview["Location"] == 21) || (interview["Location"] == 22))quota_id = "T2"; 
+        
+
+        if ((interview["Location"] == 23) || (interview["Location"] == 12)) quota_id = "P84/P90/P91/P92";    
+        if ((interview["Location"] == 24) || (interview["Location"] == 25)) quota_id = "P84/P90/P91/P92";    
+        
+        
+
+        
+
 
         quota_id = '"quota_id"' + ":" + '"' +  quota_id +   '", ';
         var InterviewEndDate = '"InterviewEndDate"' + ":" + '"' +  interview["InterviewDate"] + '", ';

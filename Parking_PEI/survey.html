@@ -48,21 +48,22 @@
           const listSearchHandler = () => {
             console.log("Current Page Index: ", api.fn.getCurrentPageIndex() );
 
-            if (api.fn.getCurrentPageIndex() == 18) {
+            if (api.fn.getCurrentPageIndex() == 21) {
+			  console.log("Q10A");
               api.fn.answers({back_pressed: 0}); //used for condition
               search_Q10_A();
               setTimeout(function () {
                 api.fn.goNext();
               }, 1 * 500); //1 second
             }
-            else if (api.fn.getCurrentPageIndex() == 27) {
+            else if (api.fn.getCurrentPageIndex() == 30) {
               api.fn.answers({back_pressed: 0}); //used for condition
               search_Q10_B();
               setTimeout(function () {
                 api.fn.goNext();
               }, 1 * 500); //1 second
             }
-            else if (api.fn.getCurrentPageIndex() == 38) {
+            else if (api.fn.getCurrentPageIndex() == 41) {
               api.fn.answers({back_pressed: 0}); //used for condition
               search_Q13();
               setTimeout(function () {
@@ -70,9 +71,9 @@
               }, 1 * 500); //1 second
             }
 
-          if ((api.fn.getCurrentPageIndex() == 17) 
-            || (api.fn.getCurrentPageIndex() == 26) 
-            || (api.fn.getCurrentPageIndex() == 37) 
+          if ((api.fn.getCurrentPageIndex() == 20) 
+            || (api.fn.getCurrentPageIndex() == 29) 
+            || (api.fn.getCurrentPageIndex() == 40) 
           ) 
           {
             api.fn.answers({back_pressed: 0}); //used for condition

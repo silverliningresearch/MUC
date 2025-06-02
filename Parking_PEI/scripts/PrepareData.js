@@ -167,13 +167,10 @@ function prepareInterviewData() {
         if ((interview["Location"] == 21) || (interview["Location"] == 22))quota_id = "T2"; 
         
 
-        if ((interview["Location"] == 23) || (interview["Location"] == 12)) quota_id = "P84/P90/P91/P92";    
-        if ((interview["Location"] == 24) || (interview["Location"] == 25)) quota_id = "P84/P90/P91/P92";    
-        
-        
-
-        
-
+        if ((interview["Location"] == 23)) quota_id = "P84";    
+        if ((interview["Location"] == 12)) quota_id = "P90";    
+        if ((interview["Location"] == 24)) quota_id = "P91";    
+        if ((interview["Location"] == 25)) quota_id = "P92";    
 
         quota_id = '"quota_id"' + ":" + '"' +  quota_id +   '", ';
         var InterviewEndDate = '"InterviewEndDate"' + ":" + '"' +  interview["InterviewDate"] + '", ';

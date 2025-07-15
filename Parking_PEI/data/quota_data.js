@@ -14,9 +14,9 @@
 {"quota_id": "P91", "Area": "P91", "Quota": "10"},
 {"quota_id": "P92", "Area": "P92", "Quota": "10"},
 
-{"quota_id": "T1-C", "Area": "T1-C", "Quota": "35"},
-{"quota_id": "T1-D", "Area": "T1-D", "Quota": "35"},
-{"quota_id": "T2", "Area": "T2", "Quota": "75"}
+{"quota_id": "T1-C (ohne Vorfahrten)", "Area": "T1-C", "Quota": "35"},
+{"quota_id": "T1-D (ohne Vorfahrten)", "Area": "T1-D", "Quota": "35"},
+{"quota_id": "T2 (ohne Vorfahrten)", "Area": "T2", "Quota": "75"}
 
 ]    
 

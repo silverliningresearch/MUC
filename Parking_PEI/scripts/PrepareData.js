@@ -159,10 +159,10 @@ function prepareInterviewData() {
 
         if (interview["Location"] == 11) quota_id = "P51";
 
-        if ((interview["Location"] == 17) || (interview["Location"] == 18)) quota_id = "T1-C (ohne Vorfahrten)";
-        if ((interview["Location"] == 19) || (interview["Location"] == 20))quota_id = "T1-D (ohne Vorfahrten)";    
+        if ((interview["Location"] == 17) || (interview["Location"] == 18)) quota_id = "T1-C Vorfahrt";
+        if ((interview["Location"] == 19) || (interview["Location"] == 20))quota_id = "T1-D Vorfahrt";    
 
-        if ((interview["Location"] == 21) || (interview["Location"] == 22))quota_id = "T2 (ohne Vorfahrten)"; 
+        if ((interview["Location"] == 21) || (interview["Location"] == 22))quota_id = "T2 Vorfahrt"; 
         
 
         if ((interview["Location"] == 23)) quota_id = "P84";    

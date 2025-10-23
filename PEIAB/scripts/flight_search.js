@@ -130,7 +130,11 @@ function save_flight_value(question, value) {
   api.fn.answers({airport_name: value.DestName});
   api.fn.answers({airline_code:   value.AirlineCode}); //airline code
   api.fn.answers({airline_name:   value.Airline});  //airline name
-  api.fn.answers({int_dom:   value.int_dom}); //International vs. domestic
+
+  api.fn.answers({Dest_Airport_Schegen:  value.Sch}); //Schegen
+  api.fn.answers({Dest_Airport_Clean_Unclean:  value.UKZ}); 
+  api.fn.answers({Dest_Airport_Country:  value.CC}); 
+
 
   console.log("save flight  done!");
 }

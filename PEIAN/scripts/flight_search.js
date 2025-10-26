@@ -128,6 +128,7 @@ function save_flight_value(question, value) {
 
   api.fn.answers({Arrival_Airport:   value.Dest});
   api.fn.answers({Arrival_Airport_Name: value.DestName});
+  
   api.fn.answers({airline_code:   value.AirlineCode}); //airline code
   api.fn.answers({airline_name:   value.Airline});  //airline name
 

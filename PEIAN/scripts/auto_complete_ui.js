@@ -142,6 +142,11 @@ function selected_handler(val) {
       $('.rt-btn.rt-btn-next').show(); 
       break;          
 
+    case "Arrival_Airline": //Arrival_Airline
+      save_airline_value(currentSearchQuestion, val);
+      $('.rt-btn.rt-btn-next').show(); 
+      break;     
+
     default:
       break;         
   }

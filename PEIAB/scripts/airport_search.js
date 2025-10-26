@@ -2,7 +2,19 @@ var airportsList;
 /************************************/
 
 function load_airports_list() {
-  airportsList = JSON.parse(airport_list);
+  load_flight_list();
+
+  airportsList = flightList.filter((currentObject, index, self) =>
+  // Check if the current object's index is the first time this 'id' appears.
+  // `findIndex` finds the index of the first element that satisfies the condition.
+    index === self.findIndex((t) => (
+      t.Dest === currentObject.Dest
+    ))
+  );
+
+  for (i = 0; i < airportsList.length; i++) {
+    airportsList[i].Show = airportsList[i].DestName;
+  }
 
   aui_init_search_list(airportsList);
   console.log("load_airport_code done!");

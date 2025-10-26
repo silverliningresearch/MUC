@@ -38,14 +38,32 @@
     <script type="text/javascript" src="https://silverliningresearch.github.io/daily_plan_data_alc/MUC_PEI_AB/data/MUC_Gate_Info.js"></script>
 
     <script src="scripts/flight_search.js"></script>
+    <script src="scripts/airline_search.js"></script>
     <script src="scripts/airport_search.js"></script>
     <script src="scripts/auto_complete_ui.js"></script>
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
-
     <script>
+        function insertTableSeparators() {
+          const selectors = [
+            "tr.rt-mtx-answers",
+            "tr.rt-mtx-answer-labels-with-subquestion",
+          ].join(",");
+          $(selectors).each(function () {
+            const $tr = $(this);
+            console.log($tr);
+            const $cells = $tr.find("td");
+            // Skip if fewer than 2 cells or separator already exists
+            if ($cells.length >= 2 && $tr.find(".rt-mtx-col-seperator").length === 0) {
+              const $insertBefore = $cells.eq(-2); // 2nd last td
+              $('<td class="rt-mtx-col-seperator"></td>').insertBefore($insertBefore);
+            }
+          });
+        }
+
+
         window.addEventListener('load', function () {
         setTimeout(() => {
           const listSearchHandler = () => {
@@ -57,18 +75,23 @@
                 break;      
 
               case 7:
-                //show_airport_search_box("Arrival_Airline");
+                show_airline_search_box("Arrival_Airline");
                 break;      
 
-                case 8:
+              case 8:
                 show_airport_search_box("Arrival_Airport");
                 break;      
 
-              case 29:
+              case 13:  // Satisfaction_Baggage_a  
+              case 17:  // Satisfaction_Baggage_b 
+              case 21:  // Rating_toilets                 
+              case 23:  // Rating_airport              
+              case 26:  // Rating_Passport_control             
                 console.log("Add empty col");
-
+                insertTableSeparators();
                 break;                  
-            default:
+
+              default:
                 hide_airport_search_box();
                 hide_flight_search_box();
               break;

@@ -20,7 +20,7 @@
 
   <body>
     <survalyzer-survey
-      surveyhash="uhplzchxgk"
+      surveyhash="gycrdjcglg"
       tenant="silverlining"
     ></survalyzer-survey>
 
@@ -33,7 +33,7 @@
 
 
 
-    <script src="data/MUC_departures_flight_list.js"></script>
+    <script src="data/MUC_arrivals_flight_list.js"></script>
     <script src="data/airport_list.js"></script>
     <script type="text/javascript" src="https://silverliningresearch.github.io/daily_plan_data_alc/MUC_PEI_AB/data/MUC_Gate_Info.js"></script>
 
@@ -52,10 +52,15 @@
             console.log("Current Page Index: ", api.fn.getCurrentPageIndex() );
         
             switch(api.fn.getCurrentPageIndex()) {
-              case 4:
+              case 6:
                 show_flight_search_box("Flight_Number");
                 break;      
-              case 18:
+
+              case 7:
+                //show_airport_search_box("Arrival_Airline");
+                break;      
+
+                case 8:
                 show_airport_search_box("Arrival_Airport");
                 break;      
 

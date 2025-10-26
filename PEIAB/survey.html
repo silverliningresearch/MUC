@@ -44,6 +44,23 @@
 
 
     <script>
+      function insertTableSeparators() {
+        const selectors = [
+          "tr.rt-mtx-answers",
+          "tr.rt-mtx-answer-labels-with-subquestion",
+        ].join(",");
+        $(selectors).each(function () {
+          const $tr = $(this);
+          console.log($tr);
+          const $cells = $tr.find("td");
+          // Skip if fewer than 2 cells or separator already exists
+          if ($cells.length >= 2 && $tr.find(".rt-mtx-col-seperator").length === 0) {
+            const $insertBefore = $cells.eq(-2); // 2nd last td
+            $('<td class="rt-mtx-col-seperator"></td>').insertBefore($insertBefore);
+          }
+        });
+      }
+
         window.addEventListener('load', function () {
         setTimeout(() => {
           const listSearchHandler = () => {
@@ -57,9 +74,11 @@
                 show_airport_search_box("Arrival_Airport");
                 break;      
 
-              case 29:
+              case 30: // check in
+              case 32: // security control
+              case 35: // passport / border control
                 console.log("Add empty col");
-
+                insertTableSeparators();
                 break;                  
             default:
                 hide_airport_search_box();

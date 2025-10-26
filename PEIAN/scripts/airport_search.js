@@ -12,7 +12,8 @@ function save_airport_value(question, value) {
   console.log("question:", question);
   console.log("value:", value);
 
-  api.fn.answers({Arrival_Airport:   value.Show}); 
+  api.fn.answers({Arrival_Airport:   value.Show.substring(0,3)}); 
+  api.fn.answers({Arrival_Airport_Name:   value.Show}); 
   api.fn.answers({Arrival_Airport_Clean_Unclean:   value.UKZ}); 
   api.fn.answers({Arrival_Airport_Schegen:   value.Sch}); 
   api.fn.answers({Arrival_Airport_Country:   value.CC}); 

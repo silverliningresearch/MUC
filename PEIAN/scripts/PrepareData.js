@@ -118,7 +118,7 @@ function isvalid_id(id)
 function prepareInterviewData() {
   var quota_data_temp = JSON.parse(airline_dest_quota);
   var interview_data_full  = JSON.parse(interview_statistics);
-  var flight_list_full  = JSON.parse(MUC_Departures_Flight_List_Raw);
+  var flight_list_full  = JSON.parse(MUC_arrivals_Flight_List_Raw);
 
   initCurrentTimeVars();		
   

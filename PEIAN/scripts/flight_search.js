@@ -76,7 +76,7 @@ function notDeparted_flight_search(flight_date, flight_time) {
 }
 
 function load_flight_list() {
-  flightRawList = JSON.parse(MUC_Departures_Flight_List_Raw);
+  flightRawList = JSON.parse(MUC_arrivals_Flight_List_Raw);
   flightList = [];
   flightList.length = 0;
   flightShortList = [];
@@ -99,7 +99,7 @@ function load_flight_list() {
         }
 
         var Show = flightRawList[i].Flight + " (" 
-        Show += flightRawList[i].Time + " to " + flightRawList[i].DestName ;
+        Show += flightRawList[i].Time + " from " + flightRawList[i].DestName ;
         if (flightRawList[i].Next && flightRawList[i].Next !="" && flightRawList[i].Next != flightRawList[i].Dest) {
           Show += " via " +  flightRawList[i].Next ;
         }
@@ -126,14 +126,14 @@ function save_flight_value(question, value) {
   api.fn.answers({terminal: value.TER});
   api.fn.answers({flight_number:   value.Flight});
 
-  api.fn.answers({airport_code:   value.Dest});
-  api.fn.answers({airport_name: value.DestName});
+  api.fn.answers({Arrival_Airport:   value.Dest});
+  api.fn.answers({Arrival_Airport_Name: value.DestName});
   api.fn.answers({airline_code:   value.AirlineCode}); //airline code
   api.fn.answers({airline_name:   value.Airline});  //airline name
 
-  api.fn.answers({Dest_Airport_Schegen:  value.Sch}); //Schegen
-  api.fn.answers({Dest_Airport_Clean_Unclean:  value.UKZ}); 
-  api.fn.answers({Dest_Airport_Country:  value.CC}); 
+  api.fn.answers({Arrival_Airport_Schegen:  value.Sch}); //Schegen
+  api.fn.answers({Arrival_Airport_Clean_Unclean:  value.UKZ}); 
+  api.fn.answers({Arrival_Airport_Country:  value.CC}); 
 
 
   console.log("save flight  done!");

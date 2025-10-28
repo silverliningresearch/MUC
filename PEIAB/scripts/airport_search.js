@@ -38,6 +38,10 @@ function show_airport_search_box(question) {
   var defaultValue = "";
 
   aui_show_external_search_box(question, defaultValue);
+
+  api.fn.answers({Arrival_Airport:   ""}); 
+  $('.rt-btn.rt-btn-next').show(); 
+
 }
 
 function hide_airport_search_box() {

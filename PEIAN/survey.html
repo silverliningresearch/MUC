@@ -46,6 +46,41 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
     <script>
+      function change_language(){
+        language = api.fn.answers().Language;
+        console.log("Language: ", language);
+
+        switch(language) {
+          case 1:
+             api.fn.changeLanguage('de');
+            break;                  
+          case 2:
+             api.fn.changeLanguage('en');
+             console.log("Language: ", 'en');
+
+            break;                  
+          case 3:
+             api.fn.changeLanguage('cn');
+            break;    
+          case 4:
+             api.fn.changeLanguage('it');
+            break;    
+          case 5:
+             api.fn.changeLanguage('ru');
+            break;    
+          case 6:
+             api.fn.changeLanguage('fr');
+            break;  
+          case 7:
+             api.fn.changeLanguage('es');
+            break;              
+          default:      
+            break;                  
+        }
+
+      }
+
+
         function insertTableSeparators(cols_from_right) {
           const selectors = [
             "tr.rt-mtx-answers",
@@ -70,6 +105,11 @@
             console.log("Current Page Index: ", api.fn.getCurrentPageIndex() );
         
             switch(api.fn.getCurrentPageIndex()) {
+              case 4:
+                // change language
+                change_language();
+                break;   
+
               case 6:
                 show_flight_search_box("Flight_Number");
                 break;      

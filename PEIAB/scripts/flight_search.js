@@ -59,7 +59,7 @@ function notDeparted_flight_search(flight_date, flight_time) {
   
   var result = false;
   
-  //allow departure time range compare to the current time: -4h +4h
+  //allow departure time range compare to the current time: -0.5h + 4h
   
   //if next date, plus 24 hour
   if (flight_date == getTomorrow()) 
@@ -67,7 +67,7 @@ function notDeparted_flight_search(flight_date, flight_time) {
     flight_time_value = flight_time_value + 24*60;
   }
 
-  if ((current_time_value < (flight_time_value + 240)) && (current_time_value > (flight_time_value - 240))) //within[-4h +4h]
+  if ((current_time_value < (flight_time_value + 240)) && (current_time_value > (flight_time_value - 30))) //within[-0.5h +4h]
   {
       result = true; 
   }

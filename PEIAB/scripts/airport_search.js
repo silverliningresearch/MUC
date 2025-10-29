@@ -40,6 +40,8 @@ function show_airport_search_box(question) {
   aui_show_external_search_box(question, defaultValue);
 
   api.fn.answers({Arrival_Airport:   ""}); 
+  api.fn.answers({Arrival_Airport_Clean_Unclean:   "C"}); 
+  api.fn.answers({Arrival_Airport_Schegen:   "S"});
   $('.rt-btn.rt-btn-next').show(); 
 
 }

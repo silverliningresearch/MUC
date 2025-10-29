@@ -32,6 +32,7 @@
     <script src="https://files.survalyzer.eu/public/dependency/embedded/release/survalyzer-survey.js"></script>
 
     <script src="data/MUC_departures_flight_list.js"></script>
+    <script src="data/airport_list.js"></script>
     <script type="text/javascript" src="https://silverliningresearch.github.io/daily_plan_data_alc/MUC_PEI_AB/data/MUC_Gate_Info.js"></script>
 
     <script src="scripts/flight_search.js"></script>
@@ -77,7 +78,7 @@
 
       }
 
-      function insertTableSeparators() {
+      function insertTableSeparators(cols_from_right) {
         const selectors = [
           "tr.rt-mtx-answers",
           "tr.rt-mtx-answer-labels-with-subquestion",
@@ -88,7 +89,7 @@
           const $cells = $tr.find("td");
           // Skip if fewer than 2 cells or separator already exists
           if ($cells.length >= 2 && $tr.find(".rt-mtx-col-seperator").length === 0) {
-            const $insertBefore = $cells.eq(-2); // 2nd last td
+            const $insertBefore = $cells.eq(0-cols_from_right); // 2nd last td
             $('<td class="rt-mtx-col-seperator"></td>').insertBefore($insertBefore);
           }
         });
@@ -111,13 +112,24 @@
                 show_airport_search_box("Arrival_Airport");
                 break;      
 
-              case 30: // check in
-              case 32: // security control
-              case 35: // passport / border control
+              case 29: // check in
+              case 31: // security control
+              case 33: // passport / border control
+              case 36: // Rating_airport_a 
+              case 37: // Rating_airport_b
+              case 40: // Toilet              
+              case 43: // Wifi      
+              case 49: // shops you visited                           
                 console.log("Add empty col");
-                insertTableSeparators();
+                insertTableSeparators(2);
                 break;                  
-            default:
+              case 59: // shops you visited       
+              case 60: // shops you visited                           
+                console.log("Add empty col");
+                insertTableSeparators(1);
+                break;                  
+
+                default:
                 hide_airport_search_box();
                 hide_flight_search_box();
               break;

@@ -2,15 +2,17 @@ var airportsList;
 /************************************/
 
 function load_airports_list() {
-  load_flight_list();
+  //load_flight_list();
 
-  airportsList = flightList.filter((currentObject, index, self) =>
-  // Check if the current object's index is the first time this 'id' appears.
-  // `findIndex` finds the index of the first element that satisfies the condition.
-    index === self.findIndex((t) => (
-      t.Dest === currentObject.Dest
-    ))
-  );
+  // airportsList = flightList.filter((currentObject, index, self) =>
+  // // Check if the current object's index is the first time this 'id' appears.
+  // // `findIndex` finds the index of the first element that satisfies the condition.
+  //   index === self.findIndex((t) => (
+  //     t.Dest === currentObject.Dest
+  //   ))
+  // );
+
+  airportsList = JSON.parse(airport_list);
 
   var language = api.fn.getCurrentLanguage(); 
   for (i = 0; i < airportsList.length; i++) {

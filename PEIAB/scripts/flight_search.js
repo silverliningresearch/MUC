@@ -82,10 +82,19 @@ function load_flight_list() {
   flightShortList = [];
   flightShortList.length = 0;
 
+  tmp_location = 1;
+  if (api.fn.answers().Interview_location_AB >4) // T2
+  {
+    tmp_location = 2;
+  }  
+
   for (i = 0; i < flightRawList.length; i++) {
     var flight = flightRawList[i];
     if (
-        ((flight.Date == getToDate() || (flight.Date == getTomorrow())) && notDeparted_flight_search(flight.Date, flight.Time)) //today flight && departure
+        ((flight.Date == getToDate() || (flight.Date == getTomorrow())) //today flight
+          && notDeparted_flight_search(flight.Date, flight.Time)   // not departured
+          && (tmp_location === flight.TER)
+        )
         )
     {
       {

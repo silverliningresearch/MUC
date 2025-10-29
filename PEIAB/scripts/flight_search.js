@@ -67,7 +67,7 @@ function notDeparted_flight_search(flight_date, flight_time) {
     flight_time_value = flight_time_value + 24*60;
   }
 
-  if ((current_time_value < (flight_time_value + 240)) && (current_time_value > (flight_time_value - 30))) //within[-0.5h +4h]
+  if ((current_time_value < (flight_time_value + 30)) && (current_time_value > (flight_time_value - 240))) //within[-0.5h +4h]
   {
       result = true; 
   }
@@ -93,16 +93,18 @@ function load_flight_list() {
         var Via = "";
         var ViaName = "";
 
-        if (  flightRawList[i].Next && flightRawList[i].Next !="" && flightRawList[i].Next != flightRawList[i].Dest) {
-          Via = '"Via"' + ":" + '"' +  flightRawList[i].Next + '", ';
-          ViaName = '"ViaName"' + ":" + '"' +  flightRawList[i].NextName + '", ';
-        }
+        // if (  flightRawList[i].Next && flightRawList[i].Next !="" && flightRawList[i].Next != flightRawList[i].Dest) {
+        //   Via = '"Via"' + ":" + '"' +  flightRawList[i].Next + '", ';
+        //   ViaName = '"ViaName"' + ":" + '"' +  flightRawList[i].NextName + '", ';
+        // }
 
         var Show = flightRawList[i].Flight + " (" 
         Show += flightRawList[i].Time + " to " + flightRawList[i].DestName ;
-        if (flightRawList[i].Next && flightRawList[i].Next !="" && flightRawList[i].Next != flightRawList[i].Dest) {
-          Show += " via " +  flightRawList[i].Next ;
-        }
+
+        // if (flightRawList[i].Next && flightRawList[i].Next !="" && flightRawList[i].Next != flightRawList[i].Dest) {
+        //   Show += " via " +  flightRawList[i].Next ;
+        // }
+        
         Show +=")";
 
         item.Show = Show; 

@@ -68931,7 +68931,7 @@
  {
   "Dest": "XCH",
   "DestName": "XCH (Christmas Island - Christmas Island)",
-  "DestNameDE": "XCH (Weihnachtsinsel _x000D_\n - Weihnachtsinsel)",
+  "DestNameDE": "XCH (Weihnachtsinsel - Weihnachtsinsel)",
   "UKZ": "B",
   "Sch": "N",
   "CC": "CX"

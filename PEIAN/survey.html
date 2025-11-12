@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="https://files.survalyzer.eu/public/dependency/devextreme/latest/css/dx.light.css" />
     <link rel="stylesheet" type="text/css" href="https://files.survalyzer.eu/public/dependency/styleguide/latest/assets/default/rt-theme.min.css" />
 
+    
   </head>
 
   <body>
@@ -123,19 +124,24 @@
                 break;      
 
               case 11:  // Rating_airport_3  
+              case 13:  // Satisfaction_Baggage_a 
                 console.log("Add empty col");
                 insertTableSeparators(1);
-                break;      
+                $('table tr').slice(3).filter(':odd').css('background-color', '#F0F0F0'); //option 1:grey
+                break;
 
-              case 13:  // Satisfaction_Baggage_a 
               case 17:  // Satisfaction_Baggage_b 
-              case 18:  // Satisfaction_Baggage_b 
               case 21:  // Rating_toilets                 
               case 23:  // Rating_airport              
               case 25:  // Rating_digital_services                           
               case 27:  // Rating_Passport_control             
                 console.log("Add empty col");
                 insertTableSeparators(1);
+                //$('table tr').slice(3).filter(':odd').css('background-color', '#F0F0F0'); //option 1:grey
+                $('table tr').slice(3).filter(':odd').css('background-color', '#e0e2f5'); //option 2: lavendel-hell-2
+                //$('table tr').slice(3).filter(':odd').css('background-color', '#ecedf9'); //--lavendel-hell
+                //$('table tr').slice(3).filter(':even').css('background-color', '#c0c3f0');//--lavendel
+                
                 break;                  
 
               default:

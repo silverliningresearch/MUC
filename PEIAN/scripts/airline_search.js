@@ -2,7 +2,7 @@ var airlineList = [];
 
 /************************************/
 function load_airline_list() {
-  load_flight_list();
+  load_arrival_flight_list_for_airport_airline_search();
 
   airlineList = flightList.filter((currentObject, index, self) =>
   // Check if the current object's index is the first time this 'id' appears.
@@ -33,7 +33,7 @@ function save_airline_value(question, value) {
 function show_airline_search_box(question) {
   load_airline_list();
   
-  console.log("airlineList: ", airlineList);
+  //console.log("airlineList: ", airlineList);
 
   var defaultValue = "";
 

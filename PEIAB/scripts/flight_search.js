@@ -82,8 +82,8 @@ function load_flight_list() {
   flightShortList = [];
   flightShortList.length = 0;
 
-  tmp_location = 1;
-  if (api.fn.answers().Interview_location_AB >4) // T2
+  tmp_location = 1; // by default is T1
+  if (api.fn.answers().Interview_location_AB > 4) // T2
   {
     tmp_location = 2;
   }  

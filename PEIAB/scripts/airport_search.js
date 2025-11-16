@@ -1,18 +1,45 @@
-var airportsList;
+var airportsList= [];
+var arrivalFlightList = [];
+
 /************************************/
 
+function load_arrival_flight_list_for_airport_airline_search() {
+  flightRawList = JSON.parse(MUC_arrivals_Flight_List_Raw);
+  arrivalFlightList = [];
+  arrivalFlightList.length = 0;
+
+  //In Transfer_Arrival_Airport in PEI AB we should only show airports that are present in the full arriving flight program 
+  // (not filtered by location, but still filtered by date. Not time though)
+
+  for (i = 0; i < flightRawList.length; i++) {
+    var flight = flightRawList[i];
+    if (
+        ((flight.Date == getToDate() ) //today flight
+        )
+        )
+    {
+      {
+        var item  = flightRawList[i];
+
+        arrivalFlightList.push(item);
+      }
+    }
+  }
+
+  aui_init_search_list(arrivalFlightList);
+  console.log("Load flight list done!");
+}
+
 function load_airports_list() {
-  //load_flight_list();
+  load_arrival_flight_list_for_airport_airline_search();
 
-  // airportsList = flightList.filter((currentObject, index, self) =>
-  // // Check if the current object's index is the first time this 'id' appears.
-  // // `findIndex` finds the index of the first element that satisfies the condition.
-  //   index === self.findIndex((t) => (
-  //     t.Dest === currentObject.Dest
-  //   ))
-  // );
-
-  airportsList = JSON.parse(airport_list);
+  airportsList = arrivalFlightList.filter((currentObject, index, self) =>
+  // Check if the current object's index is the first time this 'id' appears.
+  // `findIndex` finds the index of the first element that satisfies the condition.
+    index === self.findIndex((t) => (
+      t.Dest === currentObject.Dest
+    ))
+  );
 
   var language = api.fn.getCurrentLanguage(); 
   for (i = 0; i < airportsList.length; i++) {
@@ -26,7 +53,7 @@ function load_airports_list() {
   }
 
   aui_init_search_list(airportsList);
-  console.log("load_airport_code done!");
+  console.log("load_arrival_airport_code done!");
 }
 
 function save_airport_value(question, value) {

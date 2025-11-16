@@ -1,8 +1,42 @@
-var airportsList;
+var airportsList= [];
+var arrivalFlightList = [];
+
 /************************************/
 
+function load_arrival_flight_list_for_airport_airline_search() {
+  flightRawList = JSON.parse(MUC_arrivals_Flight_List_Raw);
+  arrivalFlightList = [];
+  arrivalFlightList.length = 0;
+
+  tmp_location = 1;
+  if (api.fn.answers().Interview_location_AN_detail == 6 ) // T2
+  {
+    tmp_location = 2;
+  }  
+
+  // For AN we should only have the flight numbers, airlines and destinations according to the flight program and the terminal location
+  for (i = 0; i < flightRawList.length; i++) {
+    var flight = flightRawList[i];
+    if (
+        (
+          //(flight.Date == getToDate()) //today flight
+          (tmp_location === flight.TER)
+        )
+        )
+    {
+      {
+        var item  = flightRawList[i];
+
+        arrivalFlightList.push(item);
+      }
+    }
+  }
+
+  aui_init_search_list(arrivalFlightList);
+}
+
 function load_airports_list() {
-  load_flight_list();
+  load_arrival_flight_list_for_airport_airline_search();
 
   airportsList = flightList.filter((currentObject, index, self) =>
   // Check if the current object's index is the first time this 'id' appears.

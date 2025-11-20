@@ -109,27 +109,32 @@
                 // change language
                 change_language();
                 break;                       
-              case 17:
+              case 20:
                 show_airport_search_box("Arrival_Airport");
                 break;      
 
               case 15: // Rating_website
-              case 18: // Rating_transfer
+              case 21: // Rating_transfer
+              
               case 20: // Rating_airport_access
               case 22: // Rating_parking_lot
-              case 23: // Rating_parking_value
-              case 25: // Rating_parking_online
-              case 29: // check in
-              case 31: // security control
-              case 33: // passport / border control
-              case 34: // passport / border control              
-              case 37: // Rating_airport_a 
-              case 38: // Rating_airport_b
-              case 41: // Toilet              
-              case 44: // Wifi      
-              case 50: // shops you visited                           
+              case 26: // Rating_parking_value
+              case 28: // Rating_parking_online
+
+              case 32: // check in
+
+              case 34: // security control
+              case 35: // passport / border control
+              case 36: // passport / border control    
+
+              case 40: // Rating_airport_a 
+              case 41: // Rating_airport_b
+
+              case 44: // Toilet              
+              case 45: // Wifi      
+              case 49: // shops you visited                           
               case 54: // Variety of food                           
-              case 55: // Rating_food_beverages - cafés/restaurants/bars you visited                           
+              case 51: // Rating_food_beverages - cafés/restaurants/bars you visited                           
                 console.log("Add empty col");
 
                 insertTableSeparators(1);
@@ -145,19 +150,6 @@
                 hide_flight_search_box();
               break;
             }
-
-            // if(api.fn.getCurrentPageIndex()==4) {
-            //   show_flight_search_box("Flight_Number");
-            // } else {
-            //   hide_flight_search_box();
-            // };
-
-            // if (api.fn.getCurrentPageIndex()==18) {
-            //   show_airport_search_box("Arrival_Airport");
-            // } else {
-            //   hide_airport_search_box();
-            // };
-
           }    
           api.events.subscribe('next', listSearchHandler);
           api.events.subscribe('back', listSearchHandler);

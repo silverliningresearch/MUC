@@ -114,30 +114,33 @@
                 break;      
 
               case 15: // Rating_website
+              case 18: // Rating_digital_services
               case 21: // Rating_transfer
-              case 20: // Rating_airport_access
-              case 22: // Rating_parking_lot
+              case 23: // Rating_airport_access
+              case 25: // Rating_parking_lot
               case 26: // Rating_parking_value
               case 28: // Rating_parking_online
               case 32: // check in
               case 34: // security control
-              case 35: // passport / border control
-              case 36: // passport / border control    
+              case 37: // passport / border control
               case 40: // Rating_airport_a 
               case 41: // Rating_airport_b
               case 44: // Toilet              
+              
               case 45: // Wifi      
-              case 49: // shops you visited                           
-              case 54: // Variety of food                           
-              case 51: // Rating_food_beverages - cafés/restaurants/bars you visited                           
-              case 59: // shops you visited       
-              case 60: // shops you visited                           
+              
+              case 49: // Rating_commercial_shops_1                          
+              case 50: // Rating_commercial_shops  (shops visited)   
+              case 53: // Rating_food_beverages_1    
+              case 54: // Rating_food_beverages_variety  Variety of food        
+              case 55: // Rating_food_beverages - cafés/restaurants/bars you visited                 
+              case 59: // Agreement_statements
                 console.log("Add empty col");
                 $('table tr').slice(3).filter(':odd').css('background-color', '#e0e2f5'); //option 2: lavendel-hell-2
                 insertTableSeparators(1);
                 break;                  
 
-                default:
+              default:
                 hide_airport_search_box();
                 hide_flight_search_box();
               break;

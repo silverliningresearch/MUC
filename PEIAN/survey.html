@@ -122,46 +122,17 @@
 
               case 11:  // Rating_airport_3  
               case 13:  // Satisfaction_Baggage_a 
-                console.log("Add empty col");
-                insertTableSeparators(1);
-                $('table tr').slice(3).filter(':odd').css('background-color', '#F0F0F0'); //option 1:grey
-                //$('tr:first-child').css('background-color', '#252940');
-                break;   
-
-              case 14:  // EXAMPLE 2               
-                console.log("Add empty col");
-                insertTableSeparators(1);
-                $('table tr').slice(3).filter(':odd').css('background-color', '#e0e2f5'); //option 2: lavendel-hell-2
-
-                $('tr:first-child').css('background-color', '#252940');
-
-                break;
-
               case 17:  // Satisfaction_Baggage_b               
-              case 18:  // TEMP Satisfaction_Baggage_b                             
-                console.log("Add empty col");
-                insertTableSeparators(1);
-                //$('table tr').slice(3).filter(':odd').css('background-color', '#e0e2f5'); //option 2: lavendel-hell-2
-                break;
-
               case 21:  // Rating_toilets    
-              case 22:  // TEMP Rating_toilets    
-
               case 23:  // Rating_airport           
-              case 24:  // TEMP Rating_airport           
-
               case 25:  // Rating_digital_services                           
-              case 26:  // TEMP Rating_digital_services                                         
-
               case 27:  // Rating_Passport_control             
-              case 28:  // TEMP Rating_Passport_control                           
                 console.log("Add empty col");
-                insertTableSeparators(1);
                 //$('table tr').slice(3).filter(':odd').css('background-color', '#F0F0F0'); //option 1:grey
-                //$('table tr').slice(3).filter(':odd').css('background-color', '#e0e2f5'); //option 2: lavendel-hell-2
-                //$('table tr').slice(3).filter(':odd').css('background-color', '#ecedf9'); //--lavendel-hell
-                //$('table tr').slice(3).filter(':even').css('background-color', '#c0c3f0');//--lavendel
-                
+                $('table tr').slice(3).filter(':odd').css('background-color', '#e0e2f5'); //option 2: lavendel-hell-2
+                //$('tr:first-child').css('background-color', '#252940'); // dont use this command
+                insertTableSeparators(1);
+
                 break;                  
 
               default:

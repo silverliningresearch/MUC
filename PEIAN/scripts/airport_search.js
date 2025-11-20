@@ -38,7 +38,7 @@ function load_arrival_flight_list_for_airport_airline_search() {
 function load_airports_list() {
   load_arrival_flight_list_for_airport_airline_search();
 
-  airportsList = flightList.filter((currentObject, index, self) =>
+  airportsList = arrivalFlightList.filter((currentObject, index, self) =>
   // Check if the current object's index is the first time this 'id' appears.
   // `findIndex` finds the index of the first element that satisfies the condition.
     index === self.findIndex((t) => (

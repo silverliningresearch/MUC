@@ -24,8 +24,8 @@ function save_airline_value(question, value) {
   console.log("question:", question);
   console.log("value:", value);
 
-  api.fn.answers({airline_code:   value.AirlineCode}); //airline code
-  api.fn.answers({airline_name:   value.Airline});  //airline name
+  api.fn.answers({Arrival_Airline_Code:   value.AirlineCode}); //airline code
+  api.fn.answers({Arrival_Airline_Name:   value.Airline});  //airline name
 
   console.log("save airline  done!");
 }

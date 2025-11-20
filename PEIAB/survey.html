@@ -115,33 +115,25 @@
 
               case 15: // Rating_website
               case 21: // Rating_transfer
-              
               case 20: // Rating_airport_access
               case 22: // Rating_parking_lot
               case 26: // Rating_parking_value
               case 28: // Rating_parking_online
-
               case 32: // check in
-
               case 34: // security control
               case 35: // passport / border control
               case 36: // passport / border control    
-
               case 40: // Rating_airport_a 
               case 41: // Rating_airport_b
-
               case 44: // Toilet              
               case 45: // Wifi      
               case 49: // shops you visited                           
               case 54: // Variety of food                           
               case 51: // Rating_food_beverages - cafés/restaurants/bars you visited                           
-                console.log("Add empty col");
-
-                insertTableSeparators(1);
-                break;                  
               case 59: // shops you visited       
               case 60: // shops you visited                           
                 console.log("Add empty col");
+                $('table tr').slice(3).filter(':odd').css('background-color', '#e0e2f5'); //option 2: lavendel-hell-2
                 insertTableSeparators(1);
                 break;                  
 

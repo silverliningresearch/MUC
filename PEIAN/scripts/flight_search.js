@@ -88,6 +88,9 @@ function load_flight_list() {
     tmp_location = 2;
   }  
 
+  var language = api.fn.getCurrentLanguage(); 
+
+
   for (i = 0; i < flightRawList.length; i++) {
     var flight = flightRawList[i];
     if (
@@ -99,24 +102,21 @@ function load_flight_list() {
     {
       {
         var item  = flightRawList[i];
-        var Via = "";
-        var ViaName = "";
-
-        if (  flightRawList[i].Next && flightRawList[i].Next !="" && flightRawList[i].Next != flightRawList[i].Dest) {
-          Via = '"Via"' + ":" + '"' +  flightRawList[i].Next + '", ';
-          ViaName = '"ViaName"' + ":" + '"' +  flightRawList[i].NextName + '", ';
-        }
 
         var Show = flightRawList[i].Flight + " (" 
-        Show += flightRawList[i].Time.substring(0, 2) + ":"  + flightRawList[i].Time.slice(-2) + " from " + flightRawList[i].DestName ;
-        if (flightRawList[i].Next && flightRawList[i].Next !="" && flightRawList[i].Next != flightRawList[i].Dest) {
-          Show += " via " +  flightRawList[i].Next ;
+        Show += flightRawList[i].Time.substring(0, 2) + ":"  + flightRawList[i].Time.slice(-2) + " from " 
+        
+        if (language=='de')
+        {
+          Show +=  flightRawList[i].DestNameDE;
         }
+        else{
+          Show +=  flightRawList[i].DestName;
+        }
+
         Show +=")";
 
         item.Show = Show; 
-        item.Via = Via; 
-        item.ViaName = ViaName;
       
         flightList.push(item);
       }

@@ -46,8 +46,15 @@ function load_airports_list() {
     ))
   );
 
+  var language = api.fn.getCurrentLanguage(); 
   for (i = 0; i < airportsList.length; i++) {
-    airportsList[i].Show = airportsList[i].DestName;
+    if (language=='de')
+    {
+      airportsList[i].Show = airportsList[i].DestNameDE;
+    }
+    else{
+      airportsList[i].Show = airportsList[i].DestName;
+    }
   }
 
   aui_init_search_list(airportsList);

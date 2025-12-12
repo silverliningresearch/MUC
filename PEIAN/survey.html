@@ -79,41 +79,63 @@
       }
 
       function customLangPosition() {
-        const head = document.querySelector("#head-elements");
-        const lang = document.querySelector(
-          "#surveylayout_languageselector_designtab",
-        );
-        const heading = document.querySelector("#heading");
+      const head = document.querySelector("#head-elements");
+      const lang = document.querySelector(
+        "#surveylayout_languageselector_designtab",
+      );
+      const heading = document.querySelector("#heading");
 
-        if (!head || !lang) return;
+      if (!head || !lang) return;
 
-        head.appendChild(lang);
+      head.appendChild(lang);
 
-        lang.removeAttribute("style");
-        lang.querySelectorAll("*").forEach((el) => el.removeAttribute("style"));
+      lang.removeAttribute("style");
+      lang.querySelectorAll("*").forEach((el) => el.removeAttribute("style"));
 
-        Object.assign(lang.style, {
-          marginLeft: "auto",
-          display: "flex",
-          justifyContent: "flex-end",
-          alignItems: "center",
-          flexBasis: "20%",
-          position: "relative",
+      Object.assign(lang.style, {
+        marginLeft: "auto",
+        display: "flex",
+        justifyContent: "flex-end",
+        alignItems: "center",
+        flexBasis: "20%",
+        position: "relative",
+      });
+
+      if (heading) {
+        heading.style.flexBasis = "50%";
+      }
+
+      const dropdown = lang.querySelector(".rt-lang-selector-container > div[id]");
+      if (dropdown) {
+        Object.assign(dropdown.style, {
+          position: "absolute",
+          top: "0",
+          right: "0",
         });
+      }
+      const rtElements = document.querySelectorAll(".rt-qelement");
+      rtElements.forEach((el) => {
+        Object.assign(el.style, {
+          paddingTop: "0.5rem",
+          paddingBottom: "0rem",
+        });
+      });
 
-        if (heading) {
-          heading.style.flexBasis = "50%";
-        }
+      const svRtContainers = document.querySelectorAll(
+        ".sv-rt-element-container.rt-element",
+      );
+      svRtContainers.forEach((el) => {
+        el.style.padding = "1rem 1rem 0.5rem";
+      });
 
-        const dropdown = lang.querySelector(".rt-lang-selector-container > div[id]");
-        if (dropdown) {
-          Object.assign(dropdown.style, {
-            position: "absolute",
-            bottom: "0",
-            right: "0",
-          });
+      const rtControlRight = document.querySelector(".rt-control-right");
+      if (rtControlRight) {
+        const parent = rtControlRight.closest(".rt-controls-container");
+        if (parent) {
+          parent.style.marginTop = "1rem";
         }
       }
+    }
       
 
       function insertTableSeparators(cols_from_right) {

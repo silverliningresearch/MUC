@@ -91,7 +91,8 @@
           // Skip if fewer than 2 cells or separator already exists
           if ($cells.length >= 2 && $tr.find(".rt-mtx-col-seperator").length === 0) {
             const $insertBefore = $cells.eq(0-cols_from_right); // 2nd last td
-            $('<td class="rt-mtx-col-seperator"></td>').insertBefore($insertBefore);
+            // $('<td class="rt-mtx-col-seperator"></td>').insertBefore($insertBefore);
+            $('<td></td>').insertBefore($insertBefore);
           }
         });
       }
@@ -136,8 +137,8 @@
               case 60: // Agreement_statements
                 console.log("Add empty col");
                 $('table tr').slice(3).filter(':odd').css('background-color', '#e0e2f5'); //option 2: lavendel-hell-2
-                insertTableSeparators(1);
                 $('tr:first-child').css('background-color', '#252940'); // must be after insertTableSeparators
+                insertTableSeparators(1);
 
                 break;                  
 

@@ -93,6 +93,7 @@
             const $insertBefore = $cells.eq(0-cols_from_right); // 2nd last td
             // $('<td class="rt-mtx-col-seperator"></td>').insertBefore($insertBefore);
             $('<td></td>').insertBefore($insertBefore);
+            $("table td:first-child").css("padding-left", "10px");  //padding for the first column
           }
         });
       }

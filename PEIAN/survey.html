@@ -78,8 +78,45 @@
 
       }
 
+      function customLangPosition() {
+        const head = document.querySelector("#head-elements");
+        const lang = document.querySelector(
+          "#surveylayout_languageselector_designtab",
+        );
+        const heading = document.querySelector("#heading");
 
-        function insertTableSeparators(cols_from_right) {
+        if (!head || !lang) return;
+
+        head.appendChild(lang);
+
+        lang.removeAttribute("style");
+        lang.querySelectorAll("*").forEach((el) => el.removeAttribute("style"));
+
+        Object.assign(lang.style, {
+          marginLeft: "auto",
+          display: "flex",
+          justifyContent: "flex-end",
+          alignItems: "center",
+          flexBasis: "20%",
+          position: "relative",
+        });
+
+        if (heading) {
+          heading.style.flexBasis = "50%";
+        }
+
+        const dropdown = lang.querySelector(".rt-lang-selector-container > div[id]");
+        if (dropdown) {
+          Object.assign(dropdown.style, {
+            position: "absolute",
+            bottom: "0",
+            right: "0",
+          });
+        }
+      }
+      
+
+      function insertTableSeparators(cols_from_right) {
           const selectors = [
             "tr.rt-mtx-answers",
             "tr.rt-mtx-answer-labels-with-subquestion",
@@ -93,7 +130,7 @@
               const $insertBefore = $cells.eq(0-cols_from_right); // 2nd last td
               //$('<td class="rt-mtx-col-seperator"></td>').insertBefore($insertBefore);
               $('<td></td>').insertBefore($insertBefore);
-
+              $("table td:first-child").css("padding-left", "10px");
             }
           });
         }
@@ -103,7 +140,8 @@
         setTimeout(() => {
           const listSearchHandler = () => {
             console.log("Current Page Index: ", api.fn.getCurrentPageIndex() );
-        
+            customLangPosition();
+            
             switch(api.fn.getCurrentPageIndex()) {
               case 4:
                 // change language

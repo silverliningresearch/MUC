@@ -18986,8 +18986,8 @@
  },
  {
   "Dest": "FMO",
-  "DestName": "FMO (Munster Osnabruck International \u00c2\u00a0 - Germany)",
-  "DestNameDE": "FMO (Munster Osnabr\u00fcck International \u00c2 - Deutschland)",
+  "DestName": "FMO (Munster Osnabruck International - Germany)",
+  "DestNameDE": "FMO (Munster Osnabr\u00fcck International - Deutschland)",
   "UKZ": "C",
   "Sch": "S",
   "CC": "DE"

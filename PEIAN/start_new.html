@@ -1,7 +1,7 @@
 <html>
     <head>
 		<title>MUC PEI AN Survey</title>
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="images/favicon.svg">
 
      <script src="data/MUC_arrivals_flight_list.js"></script>
 
@@ -13,6 +13,7 @@
    <script type="text/javascript" src="https://silverliningresearch.github.io/daily_plan_data_alc/MUC_PEI_AB/data/MUC_Gate_Info.js"></script>
    <script type="text/javascript" src="https://silverliningresearch.github.io/daily_plan_data_sur_v3/MUC_PEIAN/interview_statistics.js"></script>
    <script type="text/javascript" src="https://silverliningresearch.github.io/daily_plan_data_sur_v3/MUC_PEIAN/location_percent.js"></script>
+   <script type="text/javascript" src="https://silverliningresearch.github.io/daily_plan_data_sur_v3/MUC_PEIAN/location_count.js"></script>
    
     <link href="css/styles_v2.css" rel ="stylesheet" type="text/css" />
     <style>
@@ -67,6 +68,7 @@
         data.addColumn('number', 'Exit (%)');
         data.addColumn('number', 'Belt (%)');
         data.addColumn('number', 'Landside (%)');
+        data.addColumn('number', 'Total (completed)');
 
         //add data
         for (i = 0; i < quota_data.length; i++) {
@@ -76,7 +78,10 @@
                 row.Location, 
                 row.Exit,
                 row.Belt,
-                row.Landside]]);
+                row.Landside,
+                row.Total,              
+              ]],
+              );
             }
           }
 

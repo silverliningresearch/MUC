@@ -161,17 +161,19 @@ function CalculateArrival() {
 
 function PreparaArrivalData() {
   var location_percent_data  = JSON.parse(location_percent);
+  var location_count_data  = JSON.parse(location_count );
+
   initCurrentTimeVars();
 
   quota_data = [
-    { "Location": "T1-A/E03", "Exit": 0, "Belt" : 0, "Landside" :0},
-    { "Location": "T1-A/E04", "Exit": 0, "Belt" : 0, "Landside" :0},
-    { "Location": "T1-B", "Exit": 0, "Belt" : 0, "Landside" :0},
-    { "Location": "T1-C", "Exit": 0, "Belt" : 0, "Landside" :0},
-    { "Location": "T1-D", "Exit": 0, "Belt" : 0, "Landside" :0},
-    { "Location": "T1-E", "Exit": 0, "Belt" : 0, "Landside" :0},  
-    { "Location": "T2", "Exit": 0, "Belt" : 0, "Landside" :0},    
-    { "Location": "Total", "Exit": 0, "Belt" : 0, "Landside" :0}        
+    { "Location": "T1-A/E03", "Exit": 0, "Belt" : 0, "Landside" :0, "Total" : 0},
+    { "Location": "T1-A/E04", "Exit": 0, "Belt" : 0, "Landside" :0, "Total" : 0},
+    { "Location": "T1-B", "Exit": 0, "Belt" : 0, "Landside" :0, "Total" : 0},
+    { "Location": "T1-C", "Exit": 0, "Belt" : 0, "Landside" :0, "Total" : 0},
+    { "Location": "T1-D", "Exit": 0, "Belt" : 0, "Landside" :0, "Total" : 0},
+    { "Location": "T1-E", "Exit": 0, "Belt" : 0, "Landside" :0, "Total" : 0},  
+    { "Location": "T2", "Exit": 0, "Belt" : 0, "Landside" :0, "Total" : 0},    
+    { "Location": "Total", "Exit": 0, "Belt" : 0, "Landside" :0, "Total" : 0}        
 ];
 
   for (i = 0; i < location_percent_data.length; i++) {
@@ -188,12 +190,32 @@ function PreparaArrivalData() {
           }
           if (result.Exit_belt == "Baggage belts") 
           {
-            item.belt = result.Percentage
+            item.Belt = result.Percentage
           }        
           if (result.Exit_belt == "Landside") 
           {
             item.Landside = result.Percentage
           }        
+        }
+      }
+    }
+  }
+
+  var total_of_total = 0;
+  for (i = 0; i < location_count_data.length; i++) {
+    var result = location_count_data[i];
+    if (result.Month + "-" + result.Year == currentMonth)
+    {
+      for (j = 0; j < quota_data.length; j++) {
+        var item = quota_data[j];
+        if (item.Location == result.Location)
+        {
+          item.Total = item.Total  + result.completed_interviews
+        }
+        
+        if (item.Location == "Total")
+        {
+          item.Total = item.Total  + result.completed_interviews
         }
       }
     }

@@ -103,8 +103,9 @@ function load_flight_list() {
       {
         var item  = flightRawList[i];
 
-        var Show = flightRawList[i].Flight + " (" 
-        Show += flightRawList[i].Time.substring(0, 2) + ":"  + flightRawList[i].Time.slice(-2) + " from " 
+        var Show = flightRawList[i].Flight.replaceAll(" ", "");;
+
+        Show +=  " ("  + flightRawList[i].Time.substring(0, 2) + ":"  + flightRawList[i].Time.slice(-2) + " from " 
         
         if (language=='de')
         {

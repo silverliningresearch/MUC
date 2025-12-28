@@ -102,18 +102,11 @@ function load_flight_list() {
         var Via = "";
         var ViaName = "";
 
-        // if (  flightRawList[i].Next && flightRawList[i].Next !="" && flightRawList[i].Next != flightRawList[i].Dest) {
-        //   Via = '"Via"' + ":" + '"' +  flightRawList[i].Next + '", ';
-        //   ViaName = '"ViaName"' + ":" + '"' +  flightRawList[i].NextName + '", ';
-        // }
+        var Show = flightRawList[i].Flight.replaceAll(" ", "") + " (";
 
-        var Show = flightRawList[i].Flight + " (" 
         Show += flightRawList[i].Time.substring(0, 2) + ":"  + flightRawList[i].Time.slice(-2) + " to " + flightRawList[i].DestName ;
 
-        // if (flightRawList[i].Next && flightRawList[i].Next !="" && flightRawList[i].Next != flightRawList[i].Dest) {
-        //   Show += " via " +  flightRawList[i].Next ;
-        // }
-        
+       
         Show +=")";
 
         item.Show = Show; 

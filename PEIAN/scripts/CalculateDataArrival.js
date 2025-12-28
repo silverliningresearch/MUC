@@ -168,7 +168,7 @@ function PreparaArrivalData() {
   quota_data = [
     { "Location": "T1-A/E03", "Exit": 0, "Belt" : 0, "Landside" :0, "Total" : 0},
     { "Location": "T1-A/E04", "Exit": 0, "Belt" : 0, "Landside" :0, "Total" : 0},
-    { "Location": "T1-B", "Exit": 0, "Belt" : 0, "Landside" :0, "Total" : 0},
+    // { "Location": "T1-B", "Exit": 0, "Belt" : 0, "Landside" :0, "Total" : 0},
     { "Location": "T1-C", "Exit": 0, "Belt" : 0, "Landside" :0, "Total" : 0},
     { "Location": "T1-D", "Exit": 0, "Belt" : 0, "Landside" :0, "Total" : 0},
     { "Location": "T1-E", "Exit": 0, "Belt" : 0, "Landside" :0, "Total" : 0},  

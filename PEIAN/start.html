@@ -1,35 +1,132 @@
-<!DOCTYPE html>
 <html>
-<head>
-  <title>MUC - PEI AN</title>
-<link rel="icon" type="image/x-icon" href="images/favicon.svg">
-<style>
+    <head>
+		<title>MUC PEI AN Survey</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.svg">
+
+     <script src="data/MUC_arrivals_flight_list.js"></script>
+
+    <script src="data/quota_data.js"></script>
+    <script src="data/invalid_cases.js"></script>
+    <script src="scripts/CalculateDataArrival.js"></script>
+    <script src="scripts/flight_search.js"></script>
+
+   <script type="text/javascript" src="https://silverliningresearch.github.io/daily_plan_data_alc/MUC_PEI_AB/data/MUC_Gate_Info.js"></script>
+   <script type="text/javascript" src="https://silverliningresearch.github.io/daily_plan_data_sur_v3/MUC_PEIAN/interview_statistics.js"></script>
+   <script type="text/javascript" src="https://silverliningresearch.github.io/daily_plan_data_sur_v3/MUC_PEIAN/location_percent.js"></script>
+   <script type="text/javascript" src="https://silverliningresearch.github.io/daily_plan_data_sur_v3/MUC_PEIAN/location_count.js"></script>
+   
+    <link href="css/styles_v2.css" rel ="stylesheet" type="text/css" />
+    <style>
+      .table-font {
+        font-size: 16px;
+        /* height: 18px; */
+      }
+
+      .filter-font {
+        font-size: 16px;
+        /* height: 18px; */
+      }
+
+      .button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        width: 300px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+
+      .red {background-color: #f44336;;} /* Red */
+      .blue {background-color: #0693e3;} /* Blue */ 
+
+
+      .headerbackground {background-color: #66CCFF;;} /* Blue */ 
+      
+
+      h1 {text-align: center;}
+
+
+    </style>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      //google.charts.load('current', {'packages':['table']});
+      google.charts.load('current', {'packages':['table','corechart', 'controls']});
+      google.charts.setOnLoadCallback(drawTable);
+
+      function drawTable() {
+        CalculateArrival();
+        PreparaArrivalData();
+        
+        var data = new google.visualization.DataTable();
+
+        data.addColumn('string', 'Location');
+        data.addColumn('number', 'Exit (%)');
+        data.addColumn('number', 'Belt (%)');
+        data.addColumn('number', 'Landside (%)');
+        data.addColumn('number', 'Number of interviews');
+
+        //add data
+        for (i = 0; i < quota_data.length; i++) {
+          var row = quota_data[i];
+            { 
+                data.addRows([[
+                row.Location, 
+                row.Exit,
+                row.Belt,
+                row.Landside,
+                row.Total,              
+              ]],
+              );
+            }
+          }
+
+        //create a dashboard.
+        var dashboard = new google.visualization.Dashboard(
+        document.getElementById('dashboard_div'));
+
+        //create fiter
+        var tableFilter = new google.visualization.ControlWrapper({
+          'controlType': 'CategoryFilter',
+          'containerId': 'filter_div',
+          'options': {
+            'filterColumnLabel': 'Location'
+          }
+        });
   
-  /* h1 {text-align: center;}
-  h2 {text-align: center;}
- */
-.button {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  width: 300px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
+        // Create table
+        var tableChart = new google.visualization.ChartWrapper({
+          'chartType': 'Table',
+          'containerId': 'table_div',
+          'options': {
+            'allowHtml': true, 
+            'cssClassNames': {tableCell: 'table-font', headerRow: 'headerbackground', headerCell: 'googleHeaderCell' },
+            'showRowNumber': false, 'width': '40%', 'height': '40%'
+          }
+        });
 
-.red {background-color: #f44336;;} /* Red */
-.blue {background-color: #0693e3;} /* Blue */ 
+        dashboard.bind(tableFilter, tableChart);
 
-</style>
+        var view = new google.visualization.DataView(data);
+        document.getElementById("filter_div").style.display = "none";
+        dashboard.draw(view);
 
+        //Update time info
+        // document.getElementById("download_time").innerHTML = "Data updated: " + download_time;
 
-</head>
-<body>
+        var overall_status = "Total quota: " + total_arrival_quota;
+        overall_status += " - Total completed: " + total_arrival_completed;
+        //overall_status += " - Quota completed: " + total_quota_completed;
+        document.getElementById("overall_status").innerHTML = overall_status + " | " + "Data updated at " + download_time;
+      }
+    </script>
+  </head>
+  <body>
+    </br></br></br>
 
   <script>
     function start_new_interview() {
@@ -47,36 +144,30 @@
     }
 
 </script>
-  <!-- <h2>BER PASSENGER SURVEY</h2> -->
-  </br>
-  </br>
+    
   <button onclick="start_new_interview()" class="button red">Start a new interview</button>
   <button onclick="resume_curent_interview()" class="button blue">Resume the current interview </button>
 
   <p>
 	</br>
     *<strong>Resume the current interview</strong> will continue from the last question in the current interview.</br>
-	</br></br></br>  
+	</br> 
   </p>
 
+    <div style="background-color:#66CCFF;">
+      </br>
+    </div>
+   
+    <h4 id="overall_status"></h4>
 
-  <div style="background-color: lightblue;">
-  </br>
-  </div> 
-  
-  <h2>
-    Interviewer Information
-  </h2>
-  <h3>
+    </br>
 
-    <!-- <a href="https://silverliningresearch.github.io/MUC/PEIAN/DailyPlan" target="_blank">
-      Daily Plan - MUC - PEI AN
-    </a> -->
+    <div id="dashboard_div">
+      <!--Divs that will hold each control and chart-->
+      <div id="filter_div"></div>
+      <div id="table_div"></div>
+    </div>
+    </div>
 
-      Daily Plan - MUC - PEI AN (to be implemented)
-  </h3> 
-
-</body>
+  </body>
 </html>
-
-

@@ -64,10 +64,22 @@
         
         var data = new google.visualization.DataTable();
 
+        // data.addColumn({
+        //   type: 'string', 
+        //   label: 'Location', 
+        //   p: { className: 'fixed-column' } 
+        // });
+
+        // data.addColumn({
+        //   type: 'string', 
+        //   label: 'Exit (%)', 
+        //   p: { className: 'fixed-column' } 
+        // });
+
         data.addColumn('string', 'Location');
-        data.addColumn('number', 'Exit (%)');
-        data.addColumn('number', 'Belt (%)');
-        data.addColumn('number', 'Landside (%)');
+        data.addColumn('string', 'Exit (%)');
+        data.addColumn('string', 'Belt (%)');
+        data.addColumn('string', 'Landside (%)');
         data.addColumn('number', 'Number of interviews');
 
         //add data
@@ -113,6 +125,19 @@
 
         var view = new google.visualization.DataView(data);
         document.getElementById("filter_div").style.display = "none";
+
+        // 4. Use the 'ready' event for jQuery fixes
+        google.visualization.events.addListener(view, 'ready', function () {
+          // Ensure the header (th) also respects the width of the cells (td)
+          $('.fixed-column').css({
+            'width': '200px',
+            'min-width': '200px',
+            'max-width': '200px',
+            'white-space': 'normal',
+            'word-break': 'break-word'
+          });
+        });
+
         dashboard.draw(view);
 
         //Update time info

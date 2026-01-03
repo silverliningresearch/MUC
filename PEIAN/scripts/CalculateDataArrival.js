@@ -14,7 +14,7 @@ var removed_ids_data;
 var currentMonth;
 var currentDate;
 var nextDate;
-var download_time;
+var download_time_an;
 
 var total_quota;
 var total_completed;
@@ -23,125 +23,125 @@ var total_completed_percent;
 var total_quota_completed;
 var report_version = 1;
 /************************************/
-function initCurrentTimeVars() {
-  var d = new Date();
+// function initCurrentTimeVars() {
+//   var d = new Date();
       
-  var month = '' + (d.getMonth() + 1); //month start from 0;
+//   var month = '' + (d.getMonth() + 1); //month start from 0;
   
-  var day = '' + d.getDate();
-  var year = d.getFullYear();
+//   var day = '' + d.getDate();
+//   var year = d.getFullYear();
 
-  if (month.length < 2) 
-      month = '0' + month;
-  if (day.length < 2) 
-      day = '0' + day;
+//   if (month.length < 2) 
+//       month = '0' + month;
+//   if (day.length < 2) 
+//       day = '0' + day;
 
-  currentMonth =[month,year].join('-')
-  currentDate = [day, month,year].join('-');
+//   currentMonth =[month,year].join('-')
+//   currentDate = [day, month,year].join('-');
   
-  //next day
-  var tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate()+1);
-  var tomorrowMonth = '' + (tomorrow.getMonth() + 1); //month start from 0;
-  var tomorrowDay = '' + tomorrow.getDate();
-  var tomorrowYear = tomorrow.getFullYear();
+//   //next day
+//   var tomorrow = new Date();
+//   tomorrow.setDate(tomorrow.getDate()+1);
+//   var tomorrowMonth = '' + (tomorrow.getMonth() + 1); //month start from 0;
+//   var tomorrowDay = '' + tomorrow.getDate();
+//   var tomorrowYear = tomorrow.getFullYear();
 
-  if (tomorrowMonth.length < 2) 
-  tomorrowMonth = '0' + tomorrowMonth;
-  if (tomorrowDay.length < 2) 
-  tomorrowDay = '0' + tomorrowDay;
-  nextDate  = [tomorrowDay, tomorrowMonth, tomorrowYear].join('-');
+//   if (tomorrowMonth.length < 2) 
+//   tomorrowMonth = '0' + tomorrowMonth;
+//   if (tomorrowDay.length < 2) 
+//   tomorrowDay = '0' + tomorrowDay;
+//   nextDate  = [tomorrowDay, tomorrowMonth, tomorrowYear].join('-');
 
-  //return [day, month,year].join('-');
-  if (document.getElementById('year_month') && document.getElementById('year_month').value.length > 0)
-  {
-    if (document.getElementById('year_month').value != "current-month")
-    {
-      currentMonth = document.getElementById('year_month').value;
-    }
-  }
-  console.log("currentMonth: ", currentMonth);
-  switch(currentMonth) {
-    case "01-2023":
-    case "02-2023":
-    case "03-2023":                  
-    case "04-2023":
-    case "05-2023":
-    case "06-2023":
-    case "07-2023":
-      report_version = 1;
-      total_quota = 750;
-      total_arrival_quota = 250;
-      break;
-    case "08-2023":
-    case "09-2023":      
-    case "10-2023":          
-    case "11-2023":          
-    case "12-2023":      
-      report_version = 2;        
-      total_quota = 1125;
-      total_arrival_quota = 375;
-      break;
+//   //return [day, month,year].join('-');
+//   if (document.getElementById('year_month') && document.getElementById('year_month').value.length > 0)
+//   {
+//     if (document.getElementById('year_month').value != "current-month")
+//     {
+//       currentMonth = document.getElementById('year_month').value;
+//     }
+//   }
+//   console.log("currentMonth: ", currentMonth);
+//   switch(currentMonth) {
+//     case "01-2023":
+//     case "02-2023":
+//     case "03-2023":                  
+//     case "04-2023":
+//     case "05-2023":
+//     case "06-2023":
+//     case "07-2023":
+//       report_version = 1;
+//       total_quota = 750;
+//       total_arrival_quota = 250;
+//       break;
+//     case "08-2023":
+//     case "09-2023":      
+//     case "10-2023":          
+//     case "11-2023":          
+//     case "12-2023":      
+//       report_version = 2;        
+//       total_quota = 1125;
+//       total_arrival_quota = 375;
+//       break;
 
-    case "11-2024":          
-        report_version = 2;        
-        total_quota = 1500;
-        total_arrival_quota = 500;
-      break;      
-    case "12-2024":      
-    case "01-2025":      
-    case "02-2025":      
-    case "03-2025":                  
-    case "04-2025":    
-    report_version = 2;        
-    total_quota = 1125;
-    total_arrival_quota = 375;
-    break;  
+//     case "11-2024":          
+//         report_version = 2;        
+//         total_quota = 1500;
+//         total_arrival_quota = 500;
+//       break;      
+//     case "12-2024":      
+//     case "01-2025":      
+//     case "02-2025":      
+//     case "03-2025":                  
+//     case "04-2025":    
+//     report_version = 2;        
+//     total_quota = 1125;
+//     total_arrival_quota = 375;
+//     break;  
     
-    case "05-2025":                  
-    case "06-2025":                  
-    case "07-2025":                  
-    case "08-2025":                                      
-    case "09-2025":                                      
-    case "10-2025":                                      
-    case "11-2025":                                      
-    case "12-2025":                                                      
-      report_version = 2;        
-      total_quota = 1100;
-      total_arrival_quota = 450;
-      break;      
+//     case "05-2025":                  
+//     case "06-2025":                  
+//     case "07-2025":                  
+//     case "08-2025":                                      
+//     case "09-2025":                                      
+//     case "10-2025":                                      
+//     case "11-2025":                                      
+//     case "12-2025":                                                      
+//       report_version = 2;        
+//       total_quota = 1100;
+//       total_arrival_quota = 450;
+//       break;      
     
-    default:
-      report_version = 2;        
-      total_quota = 1125;
-      total_arrival_quota = 375;
-      break;
-  }
-}
+//     default:
+//       report_version = 2;        
+//       total_quota = 1125;
+//       total_arrival_quota = 375;
+//       break;
+//   }
+// }
 
-function isCurrentMonth(interviewEndDate)
-{
-// Input: "2023-04-03 10:06:22 GMT"
-  var interviewDateParsed = interviewEndDate.split("-")
+// function isCurrentMonth(interviewEndDate)
+// {
+// // Input: "2023-04-03 10:06:22 GMT"
+//   var interviewDateParsed = interviewEndDate.split("-")
 
-  var interviewYear = (interviewDateParsed[0]);
-  var interviewMonth =(interviewDateParsed[1]);
+//   var interviewYear = (interviewDateParsed[0]);
+//   var interviewMonth =(interviewDateParsed[1]);
   
-  var result = false;
+//   var result = false;
 
-  if ( currentMonth ==[interviewMonth,interviewYear].join('-'))
-  {
-    result = true;
-  }
+//   if ( currentMonth ==[interviewMonth,interviewYear].join('-'))
+//   {
+//     result = true;
+//   }
 
-   return result;
-}
+//    return result;
+// }
 
 
 function CalculateArrival() {
   var interview_data_temp  = JSON.parse(interview_statistics_arr);
 
-  download_time = interview_data_temp[0].download_time;
+  download_time_an = interview_data_temp[0].download_time;
 
   initCurrentTimeVars();
 

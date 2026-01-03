@@ -1,6 +1,6 @@
 <html>
     <head>
-		<title>MUC PEI AB Survey</title>
+		<title>Passenger Experience Survey – Departures</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.svg">
   
     <script src="data/quota_data.js"></script>
@@ -260,20 +260,20 @@
         dashboard.draw(view);
 
         //Update time info
-        //document.getElementById("download_time").innerHTML = "Data updated at: " + download_time;
-
-        //overall_status
-        var overall_arrival_status =  "PEI AN: " + "Total quota: " + total_arrival_quota;
-        overall_arrival_status += " - Total completed: " + total_arrival_completed;
-        overall_arrival_status +=  " (" + total_arrival_completed_percent +  "%)";
-        document.getElementById("overall_arrival_status").innerHTML =overall_arrival_status;
+        //document.getElementById("download_time_ab").innerHTML = "Data updated at: " + download_time_ab;
 
         //overall_status
         var overall_status =  "PEI AB: " + "Total quota: " + total_quota;
         overall_status += " - Total completed: " + total_completed ;
-        overall_status +=  " (" + total_completed_percent +  "%)" + " | " + "Data updated at: " + download_time;;
+        overall_status +=  " (" + total_completed_percent +  "%)" ;
         //overall_status += " - Quota completed: " + total_quota_completed;
         document.getElementById("overall_status").innerHTML =overall_status;
+
+        //overall_status
+        var overall_arrival_status =  "PEI AN: " + "Total quota: " + total_arrival_quota;
+        overall_arrival_status += " - Total completed: " + total_arrival_completed;
+        overall_arrival_status +=  " (" + total_arrival_completed_percent +  "%)"+ " | " + "Data updated at: " + download_time_an;;
+        document.getElementById("overall_arrival_status").innerHTML =overall_arrival_status;
 
         //overall_status
         var overall_status_asq =  "ASQ: " + "Total quota: " + total_quota_asq;
@@ -301,11 +301,13 @@
     </script>
   </head>
   <body>
-    </br></br></br>
-
-  <button onclick="start_new_interview()" class="button red">Start a new interview</button>
-  <button onclick="resume_curent_interview()" class="button blue">Resume the current interview </button>
-
+  </br>
+    <h2 align="center">Passenger Experience Survey – Departures</h2>
+  </br>
+  <div align="center">
+    <button onclick="start_new_interview()" class="button red">Start a new interview</button>
+    <button onclick="resume_curent_interview()" class="button blue">Resume the current interview </button>
+  </div>
   <p>
 	</br>
     *<strong>Resume the current interview</strong> will continue from the last question in the current interview.</br>
@@ -316,9 +318,10 @@
       </br>
     </div>
 
-    <!-- <h5 id="download_time"></h5> -->
-    <h4 id="overall_arrival_status"></h4>
+    <!-- <h5 id="download_time_ab"></h5> -->
     <h4 id="overall_status"></h4>
+
+    <h4 id="overall_arrival_status"></h4>
 
     <h4 id="overall_status_asq"></h4>
 

@@ -1,20 +1,32 @@
 <html>
     <head>
-		<title>MUC PEI AN Survey</title>
+		<title>Passenger Experience Survey – Arrivals</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.svg">
 
-     <script src="data/MUC_arrivals_flight_list.js"></script>
+    <script src="data/MUC_arrivals_flight_list.js"></script>
+    <script src="data/MUC_departures_flight_list.js"></script>		
 
     <script src="data/quota_data.js"></script>
     <script src="data/invalid_cases.js"></script>
     <script src="scripts/CalculateDataArrival.js"></script>
     <script src="scripts/flight_search.js"></script>
+    <script src="scripts/PrepareData.js"></script>
+		<script src="scripts/CalculateData.js"></script>
+
+    <script src="data/ASQ_Quota_Airline_Dest.js"></script>
+    <script src="data/ASQ_Quota_Airlines.js"></script>
+    <script src="data/ASQ_Quota_Dest.js"></script>
+    <script src="scripts/PrepareData_ASQ.js"></script>
+    <script src="scripts/CalculateData_ASQ.js"></script>
 
    <script type="text/javascript" src="https://silverliningresearch.github.io/daily_plan_data_alc/MUC_PEI_AB/data/MUC_Gate_Info.js"></script>
    <script type="text/javascript" src="https://silverliningresearch.github.io/daily_plan_data_sur_v3/MUC_PEIAN/interview_statistics.js"></script>
    <script type="text/javascript" src="https://silverliningresearch.github.io/daily_plan_data_sur_v3/MUC_PEIAN/location_percent.js"></script>
    <script type="text/javascript" src="https://silverliningresearch.github.io/daily_plan_data_sur_v3/MUC_PEIAN/location_count.js"></script>
-   
+   <script type="text/javascript" src="https://silverliningresearch.github.io/daily_plan_data_sur_v3/MUC_PEIAB/interview_statistics.js"></script>
+  <script type="text/javascript" src="https://silverliningresearch.github.io/daily_plan_data_asq/MUC/Departures/interview_statistics_asq.js"></script>
+
+
     <link href="css/styles_v2.css" rel ="stylesheet" type="text/css" />
     <style>
       .table-font {
@@ -59,6 +71,9 @@
       google.charts.setOnLoadCallback(drawTable);
 
       function drawTable() {
+        CalculateAirportAirLineReport_asq();
+
+        CalculateAirportAirLineReport();        
         CalculateArrival();
         PreparaArrivalData();
         
@@ -140,18 +155,29 @@
 
         dashboard.draw(view);
 
-        //Update time info
-        // document.getElementById("download_time").innerHTML = "Data updated: " + download_time;
-
-        var overall_status = "Total quota: " + total_arrival_quota;
-        overall_status += " - Total completed: " + total_arrival_completed;
+        //overall_status
+        var overall_status =  "PEI AB: " + "Total quota: " + total_quota;
+        overall_status += " - Total completed: " + total_completed ;
+        overall_status +=  " (" + total_completed_percent +  "%)" + " | " + "Data updated at: " + download_time_ab;;
         //overall_status += " - Quota completed: " + total_quota_completed;
-        document.getElementById("overall_status").innerHTML = overall_status + " | " + "Data updated at " + download_time;
+        document.getElementById("overall_status").innerHTML =overall_status;
+
+        //overall_status
+        var overall_arrival_status =  "PEI AN: " + "Total quota: " + total_arrival_quota;
+        overall_arrival_status += " - Total completed: " + total_arrival_completed;
+        overall_arrival_status +=  " (" + total_arrival_completed_percent +  "%)";
+        document.getElementById("overall_arrival_status").innerHTML =overall_arrival_status;
+
+        //overall_status
+        var overall_status_asq =  "ASQ: " + "Total quota: " + total_quota_asq;
+        overall_status_asq += " - Total completed: " + total_completed_asq ;
+        overall_status_asq +=  " (" + total_completed_percent_asq +  "%)" + " | " + "Data updated at: " + download_time_asq;;
+        //overall_status += " - Quota completed: " + total_quota_completed;
+        document.getElementById("overall_status_asq").innerHTML =overall_status_asq;
       }
     </script>
   </head>
   <body>
-    </br></br></br>
 
   <script>
     function start_new_interview() {
@@ -169,9 +195,14 @@
     }
 
 </script>
-    
-  <button onclick="start_new_interview()" class="button red">Start a new interview</button>
-  <button onclick="resume_curent_interview()" class="button blue">Resume the current interview </button>
+  </br>
+  <h2 align="center">Passenger Experience Survey – Arrivals</h2>
+  </br>
+
+  <div align="center">
+    <button onclick="start_new_interview()" class="button red">Start a new interview</button>
+    <button onclick="resume_curent_interview()" class="button blue">Resume the current interview </button>
+  </div>
 
   <p>
 	</br>
@@ -183,7 +214,9 @@
       </br>
     </div>
    
+    <h4 id="overall_arrival_status"></h4>
     <h4 id="overall_status"></h4>
+    <h4 id="overall_status_asq"></h4>
 
     </br>
 

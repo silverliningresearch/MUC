@@ -54,6 +54,7 @@ function load_airports_list() {
 
   aui_init_search_list(airportsList);
   console.log("load_arrival_airport_code done!");
+  console.log("airportsList: ", airportsList);
 }
 
 function save_airport_value(question, value) {

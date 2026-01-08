@@ -8,6 +8,8 @@ var this_month_flight_list_asq;
 var daily_plan_data_asq;
 
 var currentDate; //dd-mm-yyyy
+var currentDateID; //yyyy-mm-dd
+
 var currentMonth; //mm
 var currentYear;
 var currentQuarter; //2023-Q1, 2023-Q2
@@ -35,6 +37,8 @@ function initCurrentTimeVars_asq() {
   if (day.length < 2) day = '0' + day;
 
   currentDate = [day, month, year].join('-');
+  currentDateID = [year, month, day].join('-');
+
   currentYear = year;
   currentMonth = month; //[month, year].join('-');;
   currentQuarter = getQuarterFromMonth_asq(currentMonth, currentYear);
@@ -229,6 +233,8 @@ function prepareInterviewData_asq() {
 
     //for sorting: YYYY-MM-DD
     flight.DateTimeID = flight.Date.substring(6,10) +  flight.Date.substring(3,5) +  flight.Date.substring(0,2) + flight.Time;
+    flight.DateID = flight.Date.substring(6,10) + "-" + flight.Date.substring(3,5) + "-" +  flight.Date.substring(0,2);
+
     flight.Date_Time = flight.Time;
 
     //currentMonth: 02-2023
@@ -243,8 +249,8 @@ function prepareInterviewData_asq() {
       }	
       
       //only get today & not departed flight
-      if (((currentDate == flight.Date) && notDeparted_asq(flight.Time))
-          || (flight.Date == nextDate)
+      if (((currentDateID == flight.DateID) && notDeparted_asq(flight.Time))
+          || (flight.DateID >= currentDateID)
         )
       { 
         flight.Date_Time = flight.Date.substring(6,10) + flight.Date.substring(3,5) + flight.Date.substring(0,2) + flight.Time;

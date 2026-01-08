@@ -7,7 +7,10 @@ var removed_ids_data;
 
 var currentMonth;
 var currentDate;
+var currentDateID;
+
 var nextDate;
+
 var download_time_ab;
 
 var total_quota;
@@ -290,5 +293,5 @@ function prepareInterviewData() {
     }
   
   }
-    //console.log("daily_plan_data:", daily_plan_data)
+  console.log("daily_plan_data:", daily_plan_data)
 }

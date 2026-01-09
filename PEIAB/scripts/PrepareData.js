@@ -58,13 +58,13 @@ function initCurrentTimeVars() {
     }
   }
 
-  //return [day, month,year].join('-');
-  if (document.getElementById('show_hide_closed_target') && document.getElementById('show_hide_closed_target').value.length > 0)
-  {
-    {
-      show_hide_closed_target = document.getElementById('show_hide_closed_target').value;
-    }
-  }
+  // //return [day, month,year].join('-');
+  // if (document.getElementById('show_hide_closed_target') && document.getElementById('show_hide_closed_target').value.length > 0)
+  // {
+  //   {
+  //     show_hide_closed_target = document.getElementById('show_hide_closed_target').value;
+  //   }
+  // }
 
   console.log("currentMonth: ", currentMonth);
   switch(currentMonth) {

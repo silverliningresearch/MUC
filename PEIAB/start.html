@@ -125,6 +125,7 @@
               ||(daily_plan_data_asq[i].Priority > 0)) // or either airline or dest still missing data
           {
             daily_plan_data_asq[i].Survey = "ASQ";
+            daily_plan_data_asq[i].Quota_Completed = "No";
             daily_plan_data_asq[i].Flight = daily_plan_data_asq[i].Flight_Show;
             daily_plan_data.push(daily_plan_data_asq[i]);
           }
@@ -147,7 +148,8 @@
         data.addColumn('number', 'Completed');
 				data.addColumn('number', 'Missing');
         data.addColumn('number', 'Completed %');
-        
+        data.addColumn('string', 'Quota Completed?');
+
         if (is_the_last_month_of_Quarter_asq()) {
           data.addColumn('string', 'ASQ Notes');
         }
@@ -175,6 +177,7 @@
                 Number(row.remaining_flights), 
                 Number(row.Quota), Number(row.Completed), Number(row.Difference), 
                 Number(row.Completed_percent), 
+                row.Quota_Completed,
                 row.ASQ_missing,
                 Number(row.Prioritisation_score), 
                 Number(row.Priority)]]);
@@ -191,6 +194,7 @@
                 Number(row.remaining_flights), 
                 Number(row.Quota), Number(row.Completed), Number(row.Difference), 
                 Number(row.Completed_percent), 
+                row.Quota_Completed,
                 //row.ASQ_missing,
                 Number(row.Prioritisation_score), 
                 Number(row.Priority)]]);
@@ -281,6 +285,23 @@
           'options': date_options
         });
 
+        var quota_completed_options = {
+          'filterColumnLabel': 'Quota Completed?',
+          "ui": {"label": "", 
+                "labelStacking": 'horizotal',
+                "caption": "Completed quota:",
+                }
+        };
+
+        var quota_completedFilter = new google.visualization.ControlWrapper({
+          'controlType': 'CategoryFilter',
+          'containerId': 'filter_quota_completed',
+          'options': quota_completed_options,
+           state: {
+              selectedValues: ['No']
+            }
+        });
+
         // Create table
         var tableChart = new google.visualization.ChartWrapper({
           'chartType': 'Table',
@@ -294,7 +315,7 @@
           }
         });
 
-        dashboard.bind([tableFilter_Survey, tableFilter_Terminal, gateFilter, dateFilter], tableChart);
+        dashboard.bind([tableFilter_Survey, tableFilter_Terminal, gateFilter, dateFilter, quota_completedFilter], tableChart);
 
         var view = new google.visualization.DataView(data);
         view.hideColumns([priority_col, priority_col-1]); //hide priority one
@@ -367,14 +388,14 @@
 
     <h4 id="overall_status_asq"></h4>
 
-    
+<!--     
     <div class="custom_filter">
       <label for="show_hide_closed_target">Show fligths with closed target:</label>
       <select id="show_hide_closed_target" onchange="drawTable()">
         <option value="No">No		
         <option value="Yes">Yes
       </select>
-    </div>
+    </div> -->
 
     <div id="dashboard_div">
       <!--Divs that will hold each control and chart-->
@@ -382,6 +403,7 @@
       <div id="filter_terminal"></div>
       <div id="filter_gate" style="font-size: 15px"> </div>
       <div id="filter_date" style="font-size: 15px"> </div>
+      <div id="filter_quota_completed" style="font-size: 15px"> </div>
 
       </br>
       <div id="table_div"></div>

@@ -64,7 +64,9 @@ function CalculateAirportAirLineReport() {
     for (j = 0; j < quota_data.length; j++) {
       if (row.quota_id.toUpperCase() == quota_data[j].quota_id.toUpperCase()) 
       {
-        if ( quota_data[j].Difference < 0) {
+        if ((quota_data[j].Difference < 0) 
+            || (show_hide_closed_target == "Yes"))
+        {
           row.doop = quota_data[j].doop;
           row.remaining_flights = quota_data[j].remaining_flights;
           row.Completed = quota_data[j].Completed;

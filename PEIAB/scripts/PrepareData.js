@@ -7,7 +7,6 @@ var removed_ids_data;
 
 var currentMonth;
 var currentDate;
-var currentDateID;
 
 var nextDate;
 
@@ -19,6 +18,7 @@ var total_completed_percent;
 
 var total_quota_completed;
 var report_version = 1;
+var show_hide_closed_target = "No"
 /************************************/
 function initCurrentTimeVars() {
   var d = new Date();
@@ -57,6 +57,15 @@ function initCurrentTimeVars() {
       currentMonth = document.getElementById('year_month').value;
     }
   }
+
+  //return [day, month,year].join('-');
+  if (document.getElementById('show_hide_closed_target') && document.getElementById('show_hide_closed_target').value.length > 0)
+  {
+    {
+      show_hide_closed_target = document.getElementById('show_hide_closed_target').value;
+    }
+  }
+
   console.log("currentMonth: ", currentMonth);
   switch(currentMonth) {
     case "01-2023":
@@ -293,5 +302,5 @@ function prepareInterviewData() {
     }
   
   }
-  console.log("daily_plan_data:", daily_plan_data)
+  // console.log("daily_plan_data:", daily_plan_data)
 }

@@ -30,6 +30,34 @@
 
     <link href="css/styles_v2.css" rel ="stylesheet" type="text/css" />
     <style>
+      .custom_filter{
+        font-size: 15px;
+        padding: 10px 8px 10px 14px;
+        background: #eee;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .custom_filter .select{
+        width: 120%;
+        background:url('arrow.png') no-repeat;
+        background-position:80% center;
+      }
+
+      .custom_filter .select select{
+        background: transparent;
+        line-height: 1;
+        border: 0;
+        padding: 0;
+        border-radius: 0;
+        width: 120%;
+        position: relative;
+        z-index: 10;
+        font-size: 1em;
+      }
+
       .table-font {
         font-size: 16px;
         /* height: 18px; */
@@ -338,6 +366,15 @@
     <h4 id="overall_arrival_status"></h4>
 
     <h4 id="overall_status_asq"></h4>
+
+    
+    <div class="custom_filter">
+      <label for="show_hide_closed_target">Show fligths with closed target:</label>
+      <select id="show_hide_closed_target" onchange="drawTable()">
+        <option value="No">No		
+        <option value="Yes">Yes
+      </select>
+    </div>
 
     <div id="dashboard_div">
       <!--Divs that will hold each control and chart-->

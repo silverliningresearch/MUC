@@ -30411,7 +30411,7 @@
 
  {
   "quota_id": "CLT - AA",
-  "Quota": 6,
+  "Quota": 10,
   "Year": "2026",
   "Month": "02"
  },
@@ -30477,7 +30477,7 @@
  },
  {
   "quota_id": "ATL - DL",
-  "Quota": 6,
+  "Quota": 10,
   "Year": "2026",
   "Month": "02"
  },

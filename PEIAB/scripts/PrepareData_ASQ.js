@@ -85,8 +85,12 @@ function initCurrentTimeVars_asq() {
     case "2024-Q4":
       total_quota_asq = 700;
       break;            
-  
-    default:
+    
+    case "2026-Q2":
+      total_quota_asq = 1900;
+      break;   
+    
+      default:
       total_quota_asq = 700;
       break;
   }

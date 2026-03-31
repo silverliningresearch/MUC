@@ -107,7 +107,11 @@ function initCurrentTimeVars() {
     
     case "01-2026":                                                      
     case "02-2026":                                                      
-    case "03-2026":                                                      
+    case "03-2026":    
+      report_version = 2;        
+      total_quota = 1100;
+      total_arrival_quota = 400;
+      break;                                                         
     case "04-2026":                                                      
     case "05-2026":                                                      
     case "06-2026":                                                      
@@ -118,8 +122,8 @@ function initCurrentTimeVars() {
     case "11-2026":   
     case "12-2026":       
       report_version = 2;        
-      total_quota = 1100;
-      total_arrival_quota = 400;
+      total_quota = 805;
+      total_arrival_quota = 350;
       break;   
 
     default:

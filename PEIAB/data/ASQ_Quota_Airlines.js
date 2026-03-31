@@ -3698,6 +3698,441 @@
   "Quota": 6,
   "Quarter": "2026-Q1",
   "Notes": ""
+ },
+
+
+
+  {
+  "Airline": "4Y",
+  "Quota": 54,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "5F",
+  "Quota": 1,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "A2",
+  "Quota": 2,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "A3",
+  "Quota": 20,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "AA",
+  "Quota": 6,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "AC",
+  "Quota": 7,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "AF",
+  "Quota": 17,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "AT",
+  "Quota": 2,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "AY",
+  "Quota": 11,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "AZ",
+  "Quota": 11,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "BA",
+  "Quota": 16,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "BJ",
+  "Quota": 1,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "BR",
+  "Quota": 4,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "BT",
+  "Quota": 13,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "CA",
+  "Quota": 13,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "CX",
+  "Quota": 4,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "D8",
+  "Quota": 5,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "DE",
+  "Quota": 59,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "DL",
+  "Quota": 10,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "DX",
+  "Quota": 3,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "DY",
+  "Quota": 3,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "EC",
+  "Quota": 10,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "EI",
+  "Quota": 7,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "EK",
+  "Quota": 24,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "EN",
+  "Quota": 63,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "EW",
+  "Quota": 37,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "EY",
+  "Quota": 13,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "FH",
+  "Quota": 3,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "FI",
+  "Quota": 4,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "G9",
+  "Quota": 4,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "GF",
+  "Quota": 2,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "GQ",
+  "Quota": 4,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "HY",
+  "Quota": 1,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "IB",
+  "Quota": 7,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "KL",
+  "Quota": 19,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "KM",
+  "Quota": 9,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "KU",
+  "Quota": 2,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "LG",
+  "Quota": 2,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "LH",
+  "Quota": 972,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "LO",
+  "Quota": 7,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "LX",
+  "Quota": 20,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "MS",
+  "Quota": 4,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "NH",
+  "Quota": 6,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "OE",
+  "Quota": 2,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "OS",
+  "Quota": 18,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "OU",
+  "Quota": 11,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "PC",
+  "Quota": 18,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "QR",
+  "Quota": 14,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "RJ",
+  "Quota": 2,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "SK",
+  "Quota": 6,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "SM",
+  "Quota": 6,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "SN",
+  "Quota": 20,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "SQ",
+  "Quota": 6,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "SV",
+  "Quota": 1,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "SZ",
+  "Quota": 1,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "TG",
+  "Quota": 8,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "TK",
+  "Quota": 21,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "TP",
+  "Quota": 13,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "TU",
+  "Quota": 3,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "U2",
+  "Quota": 12,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "UA",
+  "Quota": 38,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "UD",
+  "Quota": 1,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "UX",
+  "Quota": 9,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "V7",
+  "Quota": 1,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "VF",
+  "Quota": 5,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "VL",
+  "Quota": 129,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "VN",
+  "Quota": 5,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "VY",
+  "Quota": 10,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "WF",
+  "Quota": 1,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "WY",
+  "Quota": 2,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "X3",
+  "Quota": 21,
+  "Quarter": "2026-Q2",
+  "Notes": ""
+ },
+ {
+  "Airline": "XQ",
+  "Quota": 34,
+  "Quarter": "2026-Q2",
+  "Notes": ""
  }
 
 ]    

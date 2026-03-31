@@ -119,7 +119,11 @@ function initCurrentTimeVars() {
     
     case "01-2026":                                                      
     case "02-2026":                                                      
-    case "03-2026":                                                      
+    case "03-2026":   
+      report_version = 2;        
+      total_quota = 1100;
+      total_arrival_quota = 400;
+      break;                                                         
     case "04-2026":                                                      
     case "05-2026":                                                      
     case "06-2026":                                                      
@@ -130,8 +134,8 @@ function initCurrentTimeVars() {
     case "11-2026":  
     case "12-2026":              
       report_version = 2;        
-      total_quota = 1100;
-      total_arrival_quota = 400;
+      total_quota = 805;
+      total_arrival_quota = 350;
       break;   
 
     default:
@@ -205,6 +209,14 @@ function prepareInterviewData() {
     var quota_month =  quota_data_temp[i].Month + "-"  + quota_data_temp[i].Year; 
     if ((quota_month== currentMonth) && (quota_data_temp[i].Quota>0))
     {
+      if (currentMonth == "04-2026") 
+        {
+          var ME_list = ['EY', 'QR', 'EK', 'GF', 'G9', 'B4'];
+          if (!ME_list.includes(quota_data_temp[i].quota_id.slice(-2))) {
+             quota_data_temp[i].Quota =  Math.round(quota_data_temp[i].Quota*(1+0.0624));      
+          }
+        }
+ 
       quota_data.push(quota_data_temp[i]);
     }
   }

@@ -98,8 +98,11 @@ function CalculateAirportAirLineReport() {
   });
 
   //special for MUC
-  var focus_airlines = ["DE", "EK", "EW", "XQ", "TK", "4Y", "BA"]; //X3: TUI fly
+  // var focus_airlines = ["DE", "EK", "EW", "XQ", "TK", "4Y", "BA"]; //X3: TUI fly
 
+  // from Apr-2026, remove the highlight of the six T1 airlines as dark red. That is not needed anymore since we don’t have the targets in the IDR either. 
+  var focus_airlines = ["999"];
+  
   // focus US & CA
   var focus_dest = ["ATL",  "BOS",  "CLT",  "DEN",  "DTW", "EWR",   "IAD",
   "IAH",   "JFK",   "LAS",   "LAX",   "MIA",   "ORD",   "PHL",   "SFO",   "YHZ",   "YUL",  "YVR",  "YYZ"]; //X3: TUI fly

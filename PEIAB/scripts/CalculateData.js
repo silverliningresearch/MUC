@@ -104,8 +104,11 @@ function CalculateAirportAirLineReport() {
   var focus_airlines = ["999"];
   
   // focus US & CA
+  // var focus_dest = ["ATL",  "BOS",  "CLT",  "DEN",  "DTW", "EWR",   "IAD",
+  // "IAH",   "JFK",   "LAS",   "LAX",   "MIA",   "ORD",   "PHL",   "SFO",   "YHZ",   "YUL",  "YVR",  "YYZ"]; //X3: TUI fly
   var focus_dest = ["ATL",  "BOS",  "CLT",  "DEN",  "DTW", "EWR",   "IAD",
-  "IAH",   "JFK",   "LAS",   "LAX",   "MIA",   "ORD",   "PHL",   "SFO",   "YHZ",   "YUL",  "YVR",  "YYZ"]; //X3: TUI fly
+  "IAH",   "JFK",   "LAS",   "LAX",   "MIA",   "ORD",   "PHL",   "SFO"]; //X3: TUI fly
+  
   for (i = 0; i < daily_plan_data_temp.length; i++) {
     row = daily_plan_data_temp[i];
     row.Priority = 0;

@@ -168,7 +168,7 @@ function PreparaArrivalData() {
   quota_data = [
     { "Location": "T1-A/E03", "Exit": "0%", "Belt" : "0%", "Landside" :"0%", "Total" : 0},
     { "Location": "T1-A/E04", "Exit": "0%", "Belt" : "0%", "Landside" :"0%", "Total" : 0},
-    // { "Location": "T1-B", "Exit": "0%", "Belt" : "0%", "Landside" :"0%", "Total" : 0},,
+    { "Location": "T1-B (T1-Pier)", "Exit": "0%", "Belt" : "0%", "Landside" :"0%", "Total" : 0},
     { "Location": "T1-C", "Exit": "0%", "Belt" : "0%", "Landside" :"0%", "Total" : 0},
     { "Location": "T1-D", "Exit": "0%", "Belt" : "0%", "Landside" :"0%", "Total" : 0},
     { "Location": "T1-E", "Exit": "0%", "Belt" : "0%", "Landside" :"0%", "Total" : 0},
@@ -184,6 +184,10 @@ function PreparaArrivalData() {
     {
       for (j = 0; j < quota_data.length; j++) {
         var item = quota_data[j];
+        if (result.Location == "T1-B")
+        {
+          result.Location = "T1-B (T1-Pier)";
+        }
 
         if (item.Location == result.Location)
         {
@@ -211,6 +215,11 @@ function PreparaArrivalData() {
     {
       for (j = 0; j < quota_data.length; j++) {
         var item = quota_data[j];
+        if (result.Location == "T1-B")
+        {
+          result.Location = "T1-B (T1-Pier)";
+        }
+
         if (item.Location == result.Location)
         {
           item.Total = item.Total  + result.completed_interviews

@@ -6284,8 +6284,6 @@
  },
 
 
-
-
  {
   "Airline_Dest": "4Y-HER",
   "Quota": 4.0,
@@ -6684,7 +6682,7 @@
  },
  {
   "Airline_Dest": "FI-KEF",
-  "Quota": 4.0,
+  "Quota": 5.0,
   "Quarter": "2026-Q2",
   "Notes": ""
  },

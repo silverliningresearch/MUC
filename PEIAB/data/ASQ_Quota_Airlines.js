@@ -3700,9 +3700,7 @@
   "Notes": ""
  },
 
-
-
-  {
+{
   "Airline": "4Y",
   "Quota": 54,
   "Quarter": "2026-Q2",
@@ -3872,13 +3870,7 @@
  },
  {
   "Airline": "FI",
-  "Quota": 4,
-  "Quarter": "2026-Q2",
-  "Notes": ""
- },
- {
-  "Airline": "G9",
-  "Quota": 4,
+  "Quota": 5,
   "Quarter": "2026-Q2",
   "Notes": ""
  },
@@ -3932,7 +3924,7 @@
  },
  {
   "Airline": "LH",
-  "Quota": 972,
+  "Quota": 975,
   "Quarter": "2026-Q2",
   "Notes": ""
  },

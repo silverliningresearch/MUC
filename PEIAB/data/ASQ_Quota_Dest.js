@@ -7427,7 +7427,7 @@
  },
  {
   "Dest": "DEN",
-  "Quota": 12,
+  "Quota": 13,
   "Quarter": "2026-Q2"
  },
  {
@@ -7672,7 +7672,7 @@
  },
  {
   "Dest": "KEF",
-  "Quota": 5,
+  "Quota": 6,
   "Quarter": "2026-Q2"
  },
  {
@@ -7907,7 +7907,7 @@
  },
  {
   "Dest": "PVG",
-  "Quota": 9,
+  "Quota": 10,
   "Quarter": "2026-Q2"
  },
  {
@@ -7981,11 +7981,6 @@
   "Quarter": "2026-Q2"
  },
  {
-  "Dest": "SHJ",
-  "Quota": 4,
-  "Quarter": "2026-Q2"
- },
- {
   "Dest": "SIN",
   "Quota": 11,
   "Quarter": "2026-Q2"
@@ -8017,7 +8012,7 @@
  },
  {
   "Dest": "STR",
-  "Quota": 8,
+  "Quota": 9,
   "Quarter": "2026-Q2"
  },
  {

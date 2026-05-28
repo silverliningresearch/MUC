@@ -33854,7 +33854,7 @@
 
 
 
- {
+  {
   "quota_id": "CLT - AA",
   "Quota": 12,
   "Year": "2026",
@@ -33874,13 +33874,13 @@
  },
  {
   "quota_id": "LHR - BA",
-  "Quota": 7,
+  "Quota": 8,
   "Year": "2026",
   "Month": "06"
  },
  {
   "quota_id": "FRA - DE",
-  "Quota": 2,
+  "Quota": 3,
   "Year": "2026",
   "Month": "06"
  },
@@ -33898,7 +33898,7 @@
  },
  {
   "quota_id": "RHO - DE",
-  "Quota": 2,
+  "Quota": 3,
   "Year": "2026",
   "Month": "06"
  },
@@ -33910,7 +33910,7 @@
  },
  {
   "quota_id": "DTW - DL",
-  "Quota": 12,
+  "Quota": 6,
   "Year": "2026",
   "Month": "06"
  },
@@ -33947,12 +33947,6 @@
  {
   "quota_id": "KEF - FI",
   "Quota": 3,
-  "Year": "2026",
-  "Month": "06"
- },
- {
-  "quota_id": "ATL - GTI",
-  "Quota": 12,
   "Year": "2026",
   "Month": "06"
  },
@@ -33994,13 +33988,13 @@
  },
  {
   "quota_id": "MAD - UX",
-  "Quota": 4,
+  "Quota": 5,
   "Year": "2026",
   "Month": "06"
  },
  {
   "quota_id": "BCN - VY",
-  "Quota": 4,
+  "Quota": 5,
   "Year": "2026",
   "Month": "06"
  },
@@ -34018,13 +34012,13 @@
  },
  {
   "quota_id": "ESB - XQ",
-  "Quota": 2,
+  "Quota": 3,
   "Year": "2026",
   "Month": "06"
  },
  {
   "quota_id": "IBZ - 4Y",
-  "Quota": 3,
+  "Quota": 4,
   "Year": "2026",
   "Month": "06"
  },
@@ -34060,7 +34054,7 @@
  },
  {
   "quota_id": "FCO - AZ",
-  "Quota": 3,
+  "Quota": 4,
   "Year": "2026",
   "Month": "06"
  },
@@ -34144,7 +34138,7 @@
  },
  {
   "quota_id": "AGP - LH",
-  "Quota": 4,
+  "Quota": 5,
   "Year": "2026",
   "Month": "06"
  },
@@ -34234,7 +34228,7 @@
  },
  {
   "quota_id": "BUD - LH",
-  "Quota": 7,
+  "Quota": 8,
   "Year": "2026",
   "Month": "06"
  },
@@ -34258,7 +34252,7 @@
  },
  {
   "quota_id": "CLT - LH",
-  "Quota": 7,
+  "Quota": 4,
   "Year": "2026",
   "Month": "06"
  },
@@ -34270,7 +34264,7 @@
  },
  {
   "quota_id": "CTA - LH",
-  "Quota": 2,
+  "Quota": 3,
   "Year": "2026",
   "Month": "06"
  },
@@ -34324,7 +34318,7 @@
  },
  {
   "quota_id": "FRA - LH",
-  "Quota": 28,
+  "Quota": 29,
   "Year": "2026",
   "Month": "06"
  },
@@ -34342,13 +34336,13 @@
  },
  {
   "quota_id": "HAM - LH",
-  "Quota": 24,
+  "Quota": 25,
   "Year": "2026",
   "Month": "06"
  },
  {
   "quota_id": "HND - LH",
-  "Quota": 3,
+  "Quota": 4,
   "Year": "2026",
   "Month": "06"
  },
@@ -34384,7 +34378,7 @@
  },
  {
   "quota_id": "LHR - LH",
-  "Quota": 18,
+  "Quota": 19,
   "Year": "2026",
   "Month": "06"
  },
@@ -34432,7 +34426,7 @@
  },
  {
   "quota_id": "NCE - LH",
-  "Quota": 8,
+  "Quota": 9,
   "Year": "2026",
   "Month": "06"
  },
@@ -34546,7 +34540,7 @@
  },
  {
   "quota_id": "TBS - LH",
-  "Quota": 2,
+  "Quota": 3,
   "Year": "2026",
   "Month": "06"
  },
@@ -34594,7 +34588,7 @@
  },
  {
   "quota_id": "YVR - LH",
-  "Quota": 3,
+  "Quota": 4,
   "Year": "2026",
   "Month": "06"
  },
@@ -34624,7 +34618,7 @@
  },
  {
   "quota_id": "HND - NH",
-  "Quota": 2,
+  "Quota": 3,
   "Year": "2026",
   "Month": "06"
  },
@@ -34654,7 +34648,7 @@
  },
  {
   "quota_id": "LIS - TP",
-  "Quota": 6,
+  "Quota": 7,
   "Year": "2026",
   "Month": "06"
  },
@@ -34666,7 +34660,7 @@
  },
  {
   "quota_id": "EWR - UA",
-  "Quota": 2,
+  "Quota": 3,
   "Year": "2026",
   "Month": "06"
  },
@@ -34696,13 +34690,13 @@
  },
  {
   "quota_id": "BCN - VL",
-  "Quota": 3,
+  "Quota": 4,
   "Year": "2026",
   "Month": "06"
  },
  {
   "quota_id": "BER - VL",
-  "Quota": 3,
+  "Quota": 4,
   "Year": "2026",
   "Month": "06"
  },

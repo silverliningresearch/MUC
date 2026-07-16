@@ -8,7 +8,7 @@
 
     <script src="data/quota_data.js"></script>
     <script src="data/invalid_cases.js"></script>
-    <script src="scripts/CalculateDataArrival_V2.js"></script>
+    <script src="scripts/CalculateDataArrival.js"></script>
     <script src="scripts/flight_search.js"></script>
     <script src="scripts/PrepareData.js"></script>
 		<script src="scripts/CalculateData.js"></script>
@@ -116,10 +116,10 @@
             { 
                 data.addRows([[
                 row.Location, 
-                row_exit,
-                row_belt,
-                row_landside,
-                row_total,              
+                row.Exit.toString(),
+                row.Belt.toString(),
+                row.Landside.toString(),
+                row.Total.toString(),              
               ]],
               );
             }

@@ -8,7 +8,7 @@
 
     <script src="data/quota_data.js"></script>
     <script src="data/invalid_cases.js"></script>
-    <script src="scripts/CalculateDataArrival.js"></script>
+    <script src="scripts/CalculateDataArrival_V2.js"></script>
     <script src="scripts/flight_search.js"></script>
     <script src="scripts/PrepareData.js"></script>
 		<script src="scripts/CalculateData.js"></script>
@@ -116,10 +116,10 @@
             { 
                 data.addRows([[
                 row.Location, 
-                row.Exit.toString(),
-                row.Belt.toString(),
-                row.Landside.toString(),
-                row.Total.toString(),              
+                row_exit,
+                row_belt,
+                row_landside,
+                row_total,              
               ]],
               );
             }
@@ -230,8 +230,11 @@
     <h4 id="overall_arrival_status"></h4>
     <h4 id="overall_status"></h4>
     <h4 id="overall_status_asq"></h4>
-
-    </br>
+    <p>
+    <i>
+    *The below table shows the number of missing interviews for each terminal module and for each location type. If nothing is stated, then no interviews are missing for the combination. Please be aware that the report only updates every 60-70 minutes, so keep this in mind, when conducting the interviews, so you ensure you do not overproduce.
+    </i>  
+    </p>
 
     <div id="dashboard_div">
       <!--Divs that will hold each control and chart-->

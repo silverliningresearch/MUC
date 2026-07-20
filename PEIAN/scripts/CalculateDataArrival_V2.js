@@ -165,15 +165,30 @@ function PreparaArrivalData() {
 
   initCurrentTimeVars();
 
-  quota_data = [
-    { "Location": "T1-A", "Exit": 4, "Belt" : 8, "Landside" :4, "Total" : 15},
-    { "Location": "T1-B (T1-Pier)", "Exit": 11, "Belt" :23, "Landside" :11, "Total" : 45},
-    { "Location": "T1-C", "Exit": 3, "Belt" : 5, "Landside" :3, "Total" : 10},
-    { "Location": "T1-D", "Exit": 5, "Belt" : 10, "Landside" :5, "Total" : 20},
-    { "Location": "T1-E", "Exit": 5, "Belt" : 10, "Landside" :5, "Total" : 20},
-    { "Location": "T2", "Exit": 73, "Belt" : 145, "Landside" :73, "Total" : 290},  
-    { "Location": "Total", "Exit": 100, "Belt" : 200, "Landside" : 100, "Total" : 400}       
-];
+  if (currentMonth == "07-2026")
+  {  
+    quota_data = [
+      { "Location": "T1-A", "Exit": 4, "Belt" : 8, "Landside" :4, "Total" : 15},
+      { "Location": "T1-B (T1-Pier)", "Exit": 11, "Belt" :23, "Landside" :11, "Total" : 45},
+      { "Location": "T1-C", "Exit": 3, "Belt" : 5, "Landside" :3, "Total" : 10},
+      { "Location": "T1-D", "Exit": 5, "Belt" : 10, "Landside" :5, "Total" : 20},
+      { "Location": "T1-E", "Exit": 5, "Belt" : 10, "Landside" :5, "Total" : 20},
+      { "Location": "T2", "Exit": 73, "Belt" : 145, "Landside" :73, "Total" : 290},  
+      { "Location": "Total", "Exit": 100, "Belt" : 200, "Landside" : 100, "Total" : 400}       
+    ];
+  }
+  else {
+    quota_data = [
+      { "Location": "T1-A", "Exit": 3, "Belt" : 5, "Landside" :3, "Total" : 10},
+      { "Location": "T1-B (T1-Pier)", "Exit": 9, "Belt" :18, "Landside" :9, "Total" : 35},
+      { "Location": "T1-C", "Exit": 0, "Belt" : 5, "Landside" :3, "Total" : 10},
+      { "Location": "T1-D", "Exit": 5, "Belt" : 10, "Landside" :5, "Total" : 20},
+      { "Location": "T1-E", "Exit": 5, "Belt" : 10, "Landside" :5, "Total" : 20},
+      { "Location": "T2", "Exit": 54, "Belt" : 108, "Landside" :54, "Total" : 215},  
+      { "Location": "Total", "Exit": 75, "Belt" : 150, "Landside" : 75, "Total" : 300}       
+    ];
+    
+  }
 
   // for (i = 0; i < location_percent_data.length; i++) {
   //   var result = location_percent_data[i];

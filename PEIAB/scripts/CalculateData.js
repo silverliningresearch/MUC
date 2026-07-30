@@ -101,14 +101,17 @@ function CalculateAirportAirLineReport() {
   // var focus_airlines = ["DE", "EK", "EW", "XQ", "TK", "4Y", "BA"]; //X3: TUI fly
 
   // from Apr-2026, remove the highlight of the six T1 airlines as dark red. That is not needed anymore since we don’t have the targets in the IDR either. 
-  var focus_airlines = ["999"];
+  var focus_airlines = ["99999"];
   
   // focus US & CA
   // var focus_dest = ["ATL",  "BOS",  "CLT",  "DEN",  "DTW", "EWR",   "IAD",
   // "IAH",   "JFK",   "LAS",   "LAX",   "MIA",   "ORD",   "PHL",   "SFO",   "YHZ",   "YUL",  "YVR",  "YYZ"]; //X3: TUI fly
-  var focus_dest = ["ATL",  "BOS",  "CLT",  "DEN",  "DTW", "EWR",   "IAD",
-  "IAH",   "JFK",   "LAS",   "LAX",   "MIA",   "ORD",   "PHL",   "SFO"]; //X3: TUI fly
+  // var focus_dest = ["ATL",  "BOS",  "CLT",  "DEN",  "DTW", "EWR",   "IAD",
+  // "IAH",   "JFK",   "LAS",   "LAX",   "MIA",   "ORD",   "PHL",   "SFO"]; //X3: TUI fly
   
+    // from Aug-2026, remove the highlight for all USA flights.
+    var focus_dest = ["99999"]; //X3: TUI fly
+
   for (i = 0; i < daily_plan_data_temp.length; i++) {
     row = daily_plan_data_temp[i];
     row.Priority = 0;

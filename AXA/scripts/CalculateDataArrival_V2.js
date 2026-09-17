@@ -188,9 +188,13 @@ function PreparaArrivalData() {
     // ];
 
       quota_data = [
-      { "Location": "Terminal 2, level 03 / MAC_Forum (Stelen Welcome)", "Total" : 100},
-      { "Location": "Terminal 2, level 04 (Paket Stelen Schengen)", "Total" : 100},
-      { "Location": "Terminal 2 Satellite, level 05 (Stelen Non-Schengen)","Total" : 100},
+      { "Wave": 1, "Location": "Terminal 2, level 03 / MAC_Forum (Stelen Welcome)", "Total" : 100},
+      { "Wave": 1, "Location": "Terminal 2, level 04 (Paket Stelen Schengen)", "Total" : 100},
+      { "Wave": 1, "Location": "Terminal 2 Satellite, level 05 (Stelen Non-Schengen)","Total" : 100},
+
+      { "Wave": 2, "Location": "Terminal 2, level 03 / MAC_Forum (Stelen Welcome)", "Total" : 100},
+      { "Wave": 2, "Location": "Terminal 2, level 04 (Paket Stelen Schengen)", "Total" : 100},
+      { "Wave": 2, "Location": "Terminal 2 Satellite, level 05 (Stelen Non-Schengen)","Total" : 100},
     ];
     
   }
@@ -235,24 +239,27 @@ function PreparaArrivalData() {
       for (j = 0; j < quota_data.length; j++) {
         var item = quota_data[j];
 
-        if((result.Location == 1) 
-          && (item.Location == "Terminal 2, level 03 / MAC_Forum (Stelen Welcome)"))
-        {
-           quota_data[j].Total =  quota_data[j].Total  - result.completed_interviews;
-        }
+        if ( ((result.Wave == 1) && (item.Wave == 1))
+          || ((result.Wave == 2) && (item.Wave == 2)))
+          {
+            if((result.Wave == 2) 
+              && (item.Location == "Terminal 2, level 03 / MAC_Forum (Stelen Welcome)"))
+            {
+              quota_data[j].Total =  quota_data[j].Total  - result.completed_interviews;
+            }
 
-        if((result.Location == 2) 
-          && (item.Location == "Terminal 2, level 04 (Paket Stelen Schengen)"))
-        {
-           quota_data[j].Total =  quota_data[j].Total  - result.completed_interviews;
-        }
+            if((result.Location == 2) 
+              && (item.Location == "Terminal 2, level 04 (Paket Stelen Schengen)"))
+            {
+              quota_data[j].Total =  quota_data[j].Total  - result.completed_interviews;
+            }
 
-       if((result.Location == 3) 
-          && (item.Location == "Terminal 2 Satellite, level 05 (Stelen Non-Schengen)"))
-        {
-           quota_data[j].Total =  quota_data[j].Total  - result.completed_interviews;
+            if((result.Location == 3) 
+              && (item.Location == "Terminal 2 Satellite, level 05 (Stelen Non-Schengen)"))
+            {
+              quota_data[j].Total =  quota_data[j].Total  - result.completed_interviews;
+            }
         }
-
       }
     }
   }

@@ -91,6 +91,7 @@
         //   p: { className: 'fixed-column' } 
         // });
 
+        data.addColumn('number', 'Wave');
         data.addColumn('string', 'Location');
         data.addColumn('string', 'Completes');
 
@@ -106,8 +107,8 @@
           if(row.Total >0 ) row_total = row.Total.toString();
             { 
                 data.addRows([[
+                row.Wave, 
                 row.Location, 
-
                 row_total,              
               ]],
               );

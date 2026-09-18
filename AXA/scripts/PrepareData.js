@@ -133,13 +133,13 @@ function initCurrentTimeVars() {
     case "12-2026":              
       report_version = 2;        
       total_quota = 900;
-      total_arrival_quota = 300;
+      total_arrival_quota = 600;
       break;   
 
     default:
       report_version = 2;        
       total_quota = 1100;
-      total_arrival_quota = 300;
+      total_arrival_quota = 600;
       break;
   }
 }

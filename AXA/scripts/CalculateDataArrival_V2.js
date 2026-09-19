@@ -242,7 +242,7 @@ function PreparaArrivalData() {
         if ( ((result.Wave == 1) && (item.Wave == 1))
           || ((result.Wave == 2) && (item.Wave == 2)))
           {
-            if((result.Wave == 2) 
+            if((result.Location == 1) 
               && (item.Location == "Terminal 2, level 03 / MAC_Forum (Stelen Welcome)"))
             {
               quota_data[j].Total =  quota_data[j].Total  - result.completed_interviews;

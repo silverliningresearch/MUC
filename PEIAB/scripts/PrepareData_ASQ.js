@@ -91,7 +91,7 @@ function initCurrentTimeVars_asq() {
       break;   
 
     case "2026-Q3":
-    case "2026-Q3":      
+    case "2026-Q4":      
       total_quota_asq = 700;
       break;   
       

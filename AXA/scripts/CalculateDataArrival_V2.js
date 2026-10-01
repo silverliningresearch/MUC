@@ -234,7 +234,7 @@ function PreparaArrivalData() {
   var total_of_total = 0;
   for (i = 0; i < location_count_data.length; i++) {
     var result = location_count_data[i];
-    if (result.Month + "-" + result.Year == currentMonth)
+    //if (result.Month + "-" + result.Year == currentMonth)
     {
       for (j = 0; j < quota_data.length; j++) {
         var item = quota_data[j];

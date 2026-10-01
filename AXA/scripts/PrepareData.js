@@ -222,9 +222,9 @@ function prepareInterviewData() {
     var interview = interview_data_temp[i];
 
     //only get complete interview & not test
-    if ( // (interview.InterviewState == "Complete") && 
-      (isCurrentMonth(interview.Interview_Date))
-      )
+    // if ( // (interview.InterviewState == "Complete") && 
+    //   //(isCurrentMonth(interview.Interview_Date))
+    //   )
     {
       if (interview["Dest"]) {
         if (report_version == 2) {

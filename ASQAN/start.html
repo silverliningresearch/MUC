@@ -1,384 +1,588 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ASQ Arrivals start page mock-up</title>
-<style>
-  :root {
-    --red: #f44336;
-    --bar: #66c7f4;
-    --head: #66c7f4;
-    --pink: #ffcccc;
-    --line: #d9d9d9;
-    --text: #000;
-    --muted: #666;
-    --bad-bg: #ffd6d6;
-    --bad-fg: #a40000;
-    --bad-line: #d32f2f;
-    --ok-bg: #dff2df;
-    --ok-fg: #1e6b1e;
-    --ok-line: #2e7d32;
-    --low-bg: #fff0c2;
-    --low-fg: #7a5a00;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    padding: 0 16px 40px;
-    background: #fff;
-    color: var(--text);
-    font-family: "Times New Roman", Times, serif;
-    font-size: 16px;
-  }
-  .mock-banner {
-    margin: 12px 0 0;
-    padding: 8px 12px;
-    background: #fff8d6;
-    border: 1px solid #e6d27a;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 13px;
-  }
-  h1 {
-    text-align: center;
-    font-size: 24px;
-    margin: 36px 0 28px;
-  }
-  .buttons {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .buttons a {
-    display: inline-block;
-    width: 340px;
-    max-width: 100%;
-    padding: 14px 0;
-    text-align: center;
-    color: #fff;
-    text-decoration: none;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
-  }
-  .btn-new { background: var(--red); }
-  .bar { height: 18px; background: var(--bar); margin: 40px 0 26px; }
-  .totals p { font-weight: bold; margin: 0 0 18px; font-size: 16px; }
-  .totals p.src { font-weight: normal; font-size: 14px; color: var(--muted); font-family: Arial, Helvetica, sans-serif; }
-  .chip {
-    display: inline-block;
-    margin-left: 8px;
-    padding: 2px 10px;
-    border-radius: 12px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 13px;
-    font-weight: bold;
-    vertical-align: middle;
-  }
-  .chip.ok { background: var(--ok-bg); color: var(--ok-fg); }
-  .chip.low { background: var(--low-bg); color: var(--low-fg); }
-  .chip.high { background: var(--bad-bg); color: var(--bad-fg); }
-  .section-title {
-    font-weight: bold;
-    margin: 34px 0 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: #333;
-    color: #fff;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    font-weight: bold;
-    flex: none;
-  }
-  .totals .badge { margin-right: 6px; vertical-align: middle; }
-  .totals p.sub {
-    font-weight: normal;
-    font-size: 14px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #333;
-    margin: -10px 0 18px 30px;
-    padding: 3px 10px;
-    border-left: 3px solid var(--line);
-  }
-  .totals p.sub .flag { background: var(--low-bg); color: var(--low-fg); font-weight: bold; padding: 0 4px; }
-  .table-wrap { overflow-x: auto; }
-  table {
-    border-collapse: collapse;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
-    width: 100%;
-  }
-  th {
-    background: var(--head);
-    font-weight: bold;
-    padding: 3px 6px;
-    text-align: left;
-    white-space: nowrap;
-  }
-  td {
-    padding: 3px 6px;
-    border-bottom: 1px solid #fff;
-    white-space: nowrap;
-  }
-  tr.pink td { background: var(--pink); }
-  .num { text-align: right; }
-  .xtab { width: auto; min-width: 600px; }
-  .xtab td, .xtab th { padding: 4px 14px; }
-  .xtab th.num { text-align: right; }
-  .xtab tr.total td { font-weight: bold; border-top: 2px solid #000; }
-  .xtab tr.check td { border-top: 1px solid var(--line); }
-  .xtab td.diff-bad { background: var(--bad-bg); color: var(--bad-fg); font-weight: bold; }
-  .xtab td.diff-ok { background: var(--ok-bg); color: var(--ok-fg); font-weight: bold; }
-  .xtab tr.target td { color: var(--muted); font-style: italic; border-top: 1px solid var(--line); }
-  .xtab td.base, .xtab th.base { border-left: 2px solid #000; }
-  .small { font-size: 13px; color: var(--muted); margin-top: 6px; font-family: Arial, Helvetica, sans-serif; }
-  .filters { margin: 8px 0 14px; font-family: Arial, Helvetica, sans-serif; font-size: 14px; }
-  .filters label { display: flex; align-items: center; gap: 8px; margin: 2px 0; }
-  .filters select { width: 218px; font-size: 13px; color: #444; }
-</style>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>ASQ Arrivals</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.svg">
+    <script src="data/MUC_arrivals_flight_list.js"></script>
+
+    <style>
+      :root {
+        --red: #f44336;
+        --bar: #66c7f4;
+        --head: #66c7f4;
+        --pink: #ffcccc;
+        --line: #d9d9d9;
+        --text: #000;
+        --muted: #666;
+        --bad-bg: #ffd6d6;
+        --bad-fg: #a40000;
+        --bad-line: #d32f2f;
+        --ok-bg: #dff2df;
+        --ok-fg: #1e6b1e;
+        --ok-line: #2e7d32;
+        --low-bg: #fff0c2;
+        --low-fg: #7a5a00;
+      }
+
+      h2 {
+          text-align: center;
+      }
+
+      .button {
+      background-color: var(--red);
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      width: 300px;
+      margin: 4px 2px;
+      cursor: pointer;
+      }
+
+      .bar { 
+          height: 18px; 
+          background: var(--bar);
+          margin: 40px 0 26px; 
+      }
+
+      .section-title {
+        font-weight: bold;
+        margin: 34px 0 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: #333;
+        color: #fff;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        font-weight: bold;
+        flex: none;
+      }
+
+      .table-font {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      }
+
+      .googleHeaderCell{
+        background: #66c7f4;
+      }
+
+      p.sub {
+      font-weight: normal;
+      font-size: 14px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #333;
+      margin: -2px 0 18px 30px; /* collapses with .section-title's 10px bottom margin, leaving an 8px gap as in the mockup */
+      padding: 3px 10px;
+      border-left: 3px solid var(--line);
+      }
+      p.sub .flag { background: var(--low-bg); color: var(--low-fg); font-weight: bold; padding: 0 4px; }
+
+      .src { font-weight: normal; font-size: 14px; color: var(--muted); font-family: Arial, Helvetica, sans-serif; }
+
+      .chip {
+        display: inline-block;
+        margin-left: 8px;
+        padding: 2px 10px;
+        border-radius: 12px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 13px;
+        font-weight: bold;
+        vertical-align: middle;
+      }
+      .chip.ok { background: var(--ok-bg); color: var(--ok-fg); }
+      .chip.low { background: var(--low-bg); color: var(--low-fg); }
+      .chip.high { background: var(--bad-bg); color: var(--bad-fg); }
+
+      .small { font-size: 13px; color: var(--muted); margin-top: 6px; font-family: Arial, Helvetica, sans-serif; }
+    </style>
+    
+    <!-- >>>Datagateway -->
+   <script type="text/javascript">
+    // Configuration for fallback system
+    const CONFIG_URL = 'https://raw.githubusercontent.com/silverliningresearch/aptgateway/main/config.json?t=' + new Date().getTime();
+    let prj ="MUC_ASQA";
+    
+    // Global variables to store config and data sources
+    let gatewayConfig = null;
+    let dataSourceBase = '';
+    let requiresToken = false;
+    let userToken = '';
+    let chartsReady = false;
+    let dataReady = false;
+
+    // Parse token from URL query parameter
+    function getTokenFromURL() {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      return urlParams.get('token') || '';
+    }
+
+    // Get token on page load
+    userToken = getTokenFromURL();
+
+    if (userToken) {
+      console.log('Token found in URL');
+    } else {
+      console.log('No token in URL - will use fallback mode if token is required');
+    }
+
+    // Fetch configuration and load data scripts
+    async function loadConfiguration() {
+      try {
+        const response = await fetch(CONFIG_URL);
+        gatewayConfig = await response.json();
+
+        // Determine data source based on mode
+        if (gatewayConfig.mode === 'primary') {
+          dataSourceBase = gatewayConfig.primary.url;
+          requiresToken = gatewayConfig.primary.requiresToken;
+        } else if (gatewayConfig.mode === 'fallback') {
+          dataSourceBase = gatewayConfig.fallback.url;
+          requiresToken = gatewayConfig.fallback.requiresToken;
+        }
+
+        // If token is required but not provided - warn
+        if (requiresToken && !userToken) {
+          console.warn('Token required but not provided.');
+        }
+
+        // Display current mode for debugging
+        console.log(`Gateway Mode: ${gatewayConfig.mode}`);
+        console.log(`Data Source: ${dataSourceBase}`);
+        console.log(`Requires Token: ${requiresToken}`);
+
+      } catch (error) {
+        console.error('Error loading configuration:', error);
+        alert('Failed to load gateway configuration. Application cannot start.');
+        return; // Stop execution if config fails
+      }
+
+      // Load data scripts dynamically
+      try {
+        // Check for Mixed Content (HTTPS page loading HTTP content)
+        if (window.location.protocol === 'https:' && dataSourceBase.startsWith('http:')) {
+          const msg = 'Security Error: Cannot load insecure (HTTP) data from a secure (HTTPS) page. Please use HTTP or update the server to HTTPS.';
+          console.error(msg);
+          alert(msg);
+          return;
+        }
+
+        await loadDataScripts();
+      } catch (error) {
+        console.error('Error loading data scripts:', error);
+        alert(`Failed to load data scripts: ${error.message}\nPlease check your connection or token.`);
+      }
+    }
+
+    // Load data scripts based on configuration
+    async function loadDataScripts() {
+      // Build URLs with or without token
+      let interviewStatsUrl, flightListUrl, quotaAirlineDestUrl,  quotaAirlineUrl,  quotaDestUrl;
+      let quotaDataUrl, invalidCasesUrl, quotaTimeOriginUrl, locationCountUrl;
+
+      if (requiresToken && userToken) {
+        // Primary server with token
+        interviewStatsUrl = `${dataSourceBase}/${prj}/interview_statistics_asq.js?token=${userToken}`;
+        quotaTimeOriginUrl = `${dataSourceBase}/${prj}/ASQ_Quota_Time_Origin.js?token=${userToken}`;
+        locationCountUrl = `${dataSourceBase}/${prj}/location_count.js?token=${userToken}`;
+      } else {
+        // Fallback GitHub repository without token
+        interviewStatsUrl = `${dataSourceBase}/${prj}/interview_statistics_asq.js`;
+        quotaTimeOriginUrl = `${dataSourceBase}/${prj}/ASQ_Quota_Time_Origin.js`;
+        locationCountUrl = `${dataSourceBase}/${prj}/location_count.js`;
+      }
+
+      // Load remote data scripts via fetch+eval to bypass MIME type restriction
+      try {
+        console.log('Loading script:', interviewStatsUrl);
+        await fetchAndEval(interviewStatsUrl);
+        await fetchAndEval(quotaTimeOriginUrl);
+        await fetchAndEval(locationCountUrl);
+
+        console.log('Remote data scripts loaded successfully');
+
+      } catch (error) {
+        console.error('Error loading remote data scripts:', error);
+        throw error;
+      }
+
+      // Load logic scripts after data scripts are loaded
+      try {
+        await loadScript('scripts/CalculateData_ASQ.js');
+        await loadScript('scripts/PrepareData_ASQ.js');
+        console.log('Logic scripts loaded successfully');
+      } catch (error) {
+        console.error('Error loading logic scripts:', error);
+        throw error;
+      }
+
+      // Signal that data is ready
+      dataReady = true;
+      console.log('Data ready');
+      attemptDraw();
+    }
+
+    // Fetch a JS file as text and eval it (bypasses MIME type restriction from raw.githubusercontent.com)
+    // Uses globalThis assignment to escape function scope (let/var inside a function eval are NOT global)
+    function fetchAndEval(url) {
+      return fetch(url)
+        .then(response => {
+          if (!response.ok) throw new Error(`HTTP ${response.status} for ${url}`);
+          return response.text();
+        })
+        .then(code => {
+          // Replace first `let/const/var varName` declaration with `globalThis.varName`
+          // so the variable is accessible globally after eval
+          const globalCode = code.replace(/^\s*(let|const|var)\s+(\w+)/, 'globalThis.$2');
+          eval(globalCode);
+        });
+    }
+
+    // Helper function to load a script dynamically (for local scripts)
+    function loadScript(src) {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = resolve;
+        script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
+        document.head.appendChild(script);
+      });
+    }
+
+    function onChartsLoaded() {
+      console.log('Google Charts loaded');
+      chartsReady = true;
+      attemptDraw();
+    }
+
+    function attemptDraw() {
+      if (chartsReady && dataReady) {
+        console.log('Both Charts and Data ready. Drawing table...');
+        drawPlanTable();
+        drawTerminalTable();
+      } else {
+        console.log(`Waiting... Charts: ${chartsReady}, Data: ${dataReady}`);
+      }
+    }
+
+    // Start loading configuration when the page loads
+    window.onload = loadConfiguration;
+  </script>
+  <!-- <<<Datagateway -->
+
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script>
+    google.charts.load('current', {'packages':['table','corechart', 'controls']});
+      google.charts.setOnLoadCallback(onChartsLoaded);
+
+      function drawTerminalTable() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Terminal area');
+        data.addColumn('string', 'Baggage belt');
+        data.addColumn('string', 'Exit');
+        data.addColumn('string', 'Landside');
+        data.addColumn('number', 'Interviews');
+
+        // counts per Location x Exit_belt for the current month, shown as row % (count / row total).
+        var rows = CalculateLocationReport_asq();
+        for (var i = 0; i < rows.length; i++) {
+          var r = rows[i];
+          data.addRows([[r.Location,
+            percentText_asq(r["Baggage belts"], r.Interviews),
+            percentText_asq(r.Exit, r.Interviews),
+            percentText_asq(r.Landside, r.Interviews),
+            r.Interviews]]);
+        }
+        data.addRows([["Soft target", "50%", "25%", "25%", null]]);
+
+        // bold Total row, italic Soft target row
+        for (var j = 0; j < data.getNumberOfColumns(); j++) {
+          data.setProperty(rows.length - 1, j, 'style', 'font-weight:bold');
+          data.setProperty(rows.length, j, 'style', 'font-style:italic');
+        }
+
+        var table = new google.visualization.Table(document.getElementById('terminal_table_div'));
+        table.draw(data, {
+          'allowHtml': true,
+          'showRowNumber': false,
+          'sort': 'disable',
+          'cssClassNames': {
+            'headerRow': 'table-font',
+            'tableCell': 'table-font',
+            'headerCell': 'googleHeaderCell',
+          }
+        });
+      }
+
+      function drawPlanTable() {
+        CalculateAirportAirLineReport_asq();
+        var data = new google.visualization.DataTable();
+
+        data.addColumn('string', 'Date');
+        data.addColumn('string', 'Time');
+        data.addColumn('number', 'TER');
+        data.addColumn('string', 'Origin Airport');
+        data.addColumn('string', 'Flight');
+        data.addColumn('string', 'Timeband');
+        data.addColumn('number', 'Quota');
+        data.addColumn('number', 'Completed');
+        data.addColumn('number', 'Missing');
+        data.addColumn('number', 'Completed %');
+        data.addColumn('string', 'Quota Completed?');
+        data.addColumn('number', 'Priority');
+
+        for (i = 0; i < daily_plan_data_asq.length; i++) {
+          var row = daily_plan_data_asq[i];
+
+          var parts =  row.Time_of_Day_Origin.split("-");
+          var timeband = parts[0];
+          var origin = row.DestName;
+
+          data.addRows([
+          [
+            row.DateID,
+            row.Time,
+            Number(row.TER),
+            origin,
+            row.Flight,
+            timeband,
+            Number(row.Quota),
+            Number(row.Completed),
+            Number(row.Difference),
+            Number(row.Completed_percent),
+            row.Quota_Completed,
+            Number(row.Priority)
+          ]
+          ]);
+        }
+
+          //highlight priority one
+        var priority_col = data.getNumberOfColumns()-1; //last one
+        for (var i = 0; i < data.getNumberOfRows(); i++) {
+          for (j=0; j < data.getNumberOfColumns(); j++) {
+            if (data.getValue(i, priority_col) ==1)
+            {
+              data.setProperty(i, j, 'style', 'background-color:#FFCCCB');
+            }
+            else {
+              data.setProperty(i, j, 'style', 'background-color:#FFFFFF');
+            }
+          }
+        }
+
+        var dashboard = new google.visualization.Dashboard(
+        document.getElementById('dashboardPlan_div'));
+
+        // Date filter
+        var filterDateOptions = {
+          'filterColumnLabel': 'Date',
+          "ui": {
+                "label": '',
+                "labelStacking": 'horizontal',
+                "caption": "Select Date",
+                }
+        }
+        var filterDate = new google.visualization.ControlWrapper({
+          'controlType': 'CategoryFilter',
+          'containerId': 'filterDate_div',
+          'options': filterDateOptions
+        });
+
+        // Terminal filter
+        var filterTerminalOptions = {
+          'filterColumnLabel': 'TER',
+          "ui": {
+                "label": '',
+                "labelStacking": 'horizontal',
+                "caption": "Select Terminal",
+                }
+        }
+        var filterTerminal = new google.visualization.ControlWrapper({
+          'controlType': 'CategoryFilter',
+          'containerId': 'filterTerminal_div',
+          'options': filterTerminalOptions
+        });
+
+        // Origin filter
+        var filterOriginOptions = {
+          'filterColumnLabel': 'Origin Airport',
+          "ui": {
+                "label": '',
+                "labelStacking": 'horizontal',
+                "caption": "Select Origin",
+                }
+        }
+        var filterOrigin = new google.visualization.ControlWrapper({
+          'controlType': 'CategoryFilter',
+          'containerId': 'filterOrigin_div',
+          'options': filterOriginOptions
+        });
+
+        // Timeband filter
+        var filterTimebandOptions = {
+          'filterColumnLabel': 'Timeband',
+          "ui": {
+                "label": '',
+                "labelStacking": 'horizontal',
+                "caption": "Select Timeband",
+                }
+        }
+        var filterTimeband = new google.visualization.ControlWrapper({
+          'controlType': 'CategoryFilter',
+          'containerId': 'filterTimeband_div',
+          'options': filterTimebandOptions
+        });
+
+        // Quota Completed filter
+        var filterCompletedOptions = {
+          'filterColumnLabel': 'Quota Completed?',
+          "ui": {
+                "label": '',
+                "labelStacking": 'horizontal',
+                "caption": "Select Quota Completed?",
+                }
+        }
+        var filterCompleted = new google.visualization.ControlWrapper({
+          'controlType': 'CategoryFilter',
+          'containerId': 'filterCompleted_div',
+          'options': filterCompletedOptions,
+          state: {
+              selectedValues: ['No']
+            }
+        });
+
+        // Table
+        var tableChart = new google.visualization.ChartWrapper({
+          'chartType': 'Table',
+          'containerId': 'tablePlan_div',
+          'options': {
+            'allowHtml': true,
+            'width': '100%',
+            'height': '100%',
+            'sort': 'disable',
+            'showRowNumber': false,
+            'cssClassNames': {
+              'headerRow': 'table-font',
+              'tableCell': 'table-font',
+              'headerCell': 'googleHeaderCell',
+            },
+            // 'pageSize': 10,
+            // 'page': 'enable',
+            // 'pagingButtonsConfiguration': 'auto',
+          }
+        });
+
+        dashboard.bind([filterDate, filterTerminal, filterOrigin, filterTimeband, filterCompleted], tableChart);
+
+        var view = new google.visualization.DataView(data);
+        view.setRows(data.getSortedRows([{column: 0}, {column: 1}]));
+        view.hideColumns([priority_col]); // Hide the Priority column in the table view
+        dashboard.draw(view);
+
+        //today status
+        var today_status = "<span class='badge'>1</span>ASQ Arrivals today (" + currentDate + "): Completed: " + total_completed_today_asq;
+        // soft target
+        if (total_completed_today_asq < 6) today_status += " <span class='chip low'>Below soft target of 6 to 18 per day</span>";
+        else if (total_completed_today_asq > 18) today_status += " <span class='chip high'>Above soft target of 6 to 18 per day</span>";
+        else today_status += " <span class='chip ok'>Within soft target of 6 to 18 per day</span>";
+        document.getElementById("asq_today_status").innerHTML = today_status;
+
+        //month status
+        var month_status = "ASQ Arrivals month (" + currentMonth + "-" + currentYear + "): Quota: " + total_quota_month_asq;
+        month_status += " - Completed: " + total_completed_month_asq;
+        month_status += " (" + (100*total_completed_month_asq/total_quota_month_asq).toFixed(0) + "%)";
+        month_status += " - Missing: " + Math.max(0, total_quota_month_asq - total_completed_month_asq);
+        document.getElementById("asq_month_status").innerHTML = month_status;
+
+        // registration check status
+        CalculateLocationReport_asq();
+        var reg_diff = total_completed_month_asq - total_registered_month_asq;
+        var reg_share = total_completed_month_asq ? reg_diff / total_completed_month_asq : 0;
+        var reg_diff_text = reg_diff + " (" + Math.round(reg_share * 100) + "%)";
+        document.getElementById("register_status").innerHTML =
+          "Registration check | Registered: " + total_registered_month_asq + " | Not registered yet: " +
+          (reg_share > 0.03 ? "<span class='flag'>" + reg_diff_text + "</span>" : reg_diff_text) +
+          " | Registration data updated at: " + registration_download_time_asq;
+
+        //quarter status
+        var quarter_status = "ASQ Arrivals quarter (" + currentQuarter + "): Quota: " + total_quota_asq;
+        quarter_status += " - Completed: " + total_completed_asq;
+        quarter_status += " (" + total_completed_percent_asq + "%)";
+        quarter_status += " - Missing: " + Math.max(0, total_quota_asq - total_completed_asq);
+        document.getElementById("asq_quarter_status").innerHTML = quarter_status;
+        
+        // live data status
+        var data_status = "Live data from the ASQ Survey in the SMT tool | SMT data updated at: " + download_time_asq;
+        document.getElementById("data_status").innerHTML = data_status;
+
+        // terminal title
+        var terminal_title = "<span class='badge'>2</span>Interview point by terminal area, " + currentMonth + "-" + currentYear + " (row %)";
+        document.getElementById("terminal_title").innerHTML = terminal_title;
+
+        // plan title
+        var plan_title = "<span class='badge'>3</span>Sample plan, " + currentQuarter;
+        document.getElementById("plan_title").innerHTML = plan_title;
+      }
+  </script>
 </head>
 <body>
+    <script>
+        function registerInterview() {
+            console.log("Registering interview");
+            var url = "#"; // TODO: link to the Registration survey in Survalyzer.
+            window.location.href = url;
+        }
+    </script>
 
-<div class="mock-banner">Mock-up for the ASQ Arrivals start page. All figures and quotas are illustrative dummy data. Numbered markers refer to the sections in the specification e-mail.</div>
+    <br>
+    <h2>ASQ Arrivals Survey</h2>
+    <br>
 
-<h1>ASQ Arrivals Survey</h1>
+    <div style="text-align: center;">
+        <button class="button" onclick="registerInterview()">Register a completed ASQ interview</button>
+    </div>
+    <div class="bar"></div>
+    <div>
+      <p class="section-title" id="asq_today_status"></p>
 
-<div class="buttons">
-  <a class="btn-new" href="#">Register a completed ASQ interview</a>
-</div>
+      <p class="section-title" id="asq_month_status"></p>
+      <p class="sub" id="register_status"></p>
 
-<div class="bar"></div>
+      <p class="section-title" id="asq_quarter_status"></p>
+      <p class="src" id="data_status"></p>
+    </div>
 
-<div class="totals">
-  <p><span class="badge">1</span>ASQ Arrivals today (18-11-2026): Completed: <span id="todayN"></span><span id="todayChip" class="chip"></span></p>
-  <p>ASQ Arrivals month (November 2026): Quota: 300 - Completed: <span id="smtMonth"></span> (59%) - Missing: 124</p>
-  <p class="sub" id="regLine"></p>
-  <p>ASQ Arrivals quarter (2026-Q4): Quota: 900 - Completed: 478 (53%) - Missing: 422</p>
-  <p class="src">Live data from the ASQ Survey in the SMT tool | SMT data updated at: 18-11-2026 13:51:51</p>
-</div>
+    <div class="section-title" id="terminal_title"></div>
+    <div id="terminal_table_div"></div>
+    <div class="small">Percentages are shares within each terminal area. Interviews per terminal area come from the Registration survey.</div>
 
-<div class="section-title"><span class="badge">2</span>Interview point by terminal area, November 2026 (row %)</div>
-<div class="table-wrap">
-  <table class="xtab" id="xtab">
-    <thead>
-      <tr>
-        <th>Terminal area</th>
-        <th class="num">Baggage belt</th>
-        <th class="num">Exit</th>
-        <th class="num">Landside</th>
-        <th class="num base">Interviews</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-</div>
-<div class="small">Percentages are shares within each terminal area and add up to 100% per row. Interviews per terminal area come from the Registration survey.</div>
 
-<div class="section-title"><span class="badge">3</span>Sample plan, 2026-Q4</div>
-
-<div class="filters">
-  <label><select id="fDate"><option value="">Select Date</option></select></label>
-  <label><select id="fOrigin"><option value="">Select Origin</option></select></label>
-  <label><select id="fBand"><option value="">Select Timeband</option></select></label>
-  <label><select id="fDone">
-    <option value="">Select Quota Completed</option>
-    <option value="Yes">Yes</option>
-    <option value="No">No</option>
-  </select></label>
-</div>
-
-<div class="table-wrap">
-  <table id="plan">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Origin Airport</th>
-        <th>Timeband</th>
-        <th class="num">Quota</th>
-        <th class="num">Completed</th>
-        <th class="num">Missing</th>
-        <th class="num">Completed %</th>
-        <th>Quota Completed?</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-</div>
-<div class="small">Quota, Completed and Missing are per origin airport and timeband for the quarter, so they repeat on every date for the same combination. Row colouring in the final page follows the PEI AB rule.</div>
-
-<script>
-// ---------- Settings (editable) ----------
-var SMT_MONTH = 176;          // completed ASQ interviews this month, live from SMT
-var TODAY_COMPLETED = 7;      // completed ASQ interviews today, live from SMT
-var SOFT_MIN = 6, SOFT_MAX = 18;   // soft target per fieldwork day, Arrivals
-var REG_THRESHOLD = 0.03;     // mark the difference when more than 3% of ASQ interviews are not registered
-var REG_UPDATED = "18-11-2026 13:45:10";   // last update of the Registration survey data
-
-// ---------- Section 1 ----------
-document.getElementById("smtMonth").textContent = SMT_MONTH;
-document.getElementById("todayN").textContent = TODAY_COMPLETED;
-(function () {
-  var chip = document.getElementById("todayChip");
-  if (TODAY_COMPLETED < SOFT_MIN) {
-    chip.className = "chip low";
-    chip.textContent = "Below soft target of " + SOFT_MIN + " to " + SOFT_MAX + " per day";
-  } else if (TODAY_COMPLETED > SOFT_MAX) {
-    chip.className = "chip high";
-    chip.textContent = "Above soft target of " + SOFT_MIN + " to " + SOFT_MAX + " per day";
-  } else {
-    chip.className = "chip ok";
-    chip.textContent = "Within soft target of " + SOFT_MIN + " to " + SOFT_MAX + " per day";
-  }
-})();
-
-// ---------- Section 2, registered interviews this month (Registration survey) ----------
-var xtab = [
-  ["T1-A/E03", 2, 1, 0],
-  ["T1-A/E04", 2, 1, 1],
-  ["T1-B", 12, 6, 6],
-  ["T1-C", 3, 1, 2],
-  ["T1-D", 6, 2, 3],
-  ["T1-E", 5, 3, 2],
-  ["T2", 55, 28, 27]
-];
-
-function pct(part, base) {
-  return base ? Math.round(part / base * 100) + "%" : "-";
-}
-
-(function renderXtab() {
-  var body = document.querySelector("#xtab tbody");
-  var tot = [0, 0, 0];
-  var html = "";
-  xtab.forEach(function (r) {
-    var n = r[1] + r[2] + r[3];
-    tot[0] += r[1]; tot[1] += r[2]; tot[2] += r[3];
-    html += "<tr><td>" + r[0] + "</td><td class='num'>" + pct(r[1], n) +
-      "</td><td class='num'>" + pct(r[2], n) + "</td><td class='num'>" + pct(r[3], n) +
-      "</td><td class='num base'>" + n + "</td></tr>";
-  });
-  var N = tot[0] + tot[1] + tot[2];
-  var diff = SMT_MONTH - N;
-  var share = SMT_MONTH ? diff / SMT_MONTH : 0;
-  var bad = share > REG_THRESHOLD;
-
-  html += "<tr class='total'><td>Total</td><td class='num'>" + pct(tot[0], N) +
-    "</td><td class='num'>" + pct(tot[1], N) + "</td><td class='num'>" + pct(tot[2], N) +
-    "</td><td class='num base'>" + N + "</td></tr>";
-  html += "<tr class='target'><td>Soft target</td><td class='num'>50%</td><td class='num'>25%</td>" +
-    "<td class='num'>25%</td><td class='num base'></td></tr>";
-  body.innerHTML = html;
-
-  // Registration check under the month line, for field management
-  var diffText = diff + " (" + Math.round(share * 100) + "%)";
-  document.getElementById("regLine").innerHTML =
-    "Registration check | Registered: " + N + " | Not registered yet: " +
-    (bad ? "<span class='flag'>" + diffText + "</span>" : diffText) +
-    " | Registration data updated at: " + REG_UPDATED;
-})();
-
-// ---------- Section 3, sample plan (ASQ Survey) ----------
-// Quarterly dummy quotas per origin x timeband: [code, name, band, quota, completed]
-var cells = [
-  ["JFK", "New York John F. Kennedy - United States", "06:00 to 08:59", 12, 8],
-  ["EWR", "New York Newark Liberty International - United States", "06:00 to 08:59", 8, 5],
-  ["ORD", "Chicago O'Hare - United States", "06:00 to 08:59", 8, 4],
-  ["SIN", "Singapore Changi - Singapore", "06:00 to 08:59", 6, 2],
-  ["BKK", "Bangkok Suvarnabhumi - Thailand", "06:00 to 08:59", 6, 3],
-  ["DEL", "Delhi Indira Gandhi - India", "06:00 to 08:59", 6, 4],
-  ["FRA", "Frankfurt - Germany", "09:00 to 11:59", 20, 14],
-  ["HAM", "Hamburg - Germany", "09:00 to 11:59", 18, 13],
-  ["BER", "Berlin Brandenburg Willy Brandt - Germany", "09:00 to 11:59", 18, 9],
-  ["DUS", "Dusseldorf - Germany", "09:00 to 11:59", 14, 10],
-  ["LHR", "London Heathrow - United Kingdom", "09:00 to 11:59", 12, 7],
-  ["CDG", "Paris Charles de Gaulle - France", "09:00 to 11:59", 10, 4],
-  ["FRA", "Frankfurt - Germany", "12:00 to 14:59", 16, 9],
-  ["AMS", "Amsterdam Schiphol - Netherlands", "12:00 to 14:59", 8, 6],
-  ["VIE", "Vienna International - Austria", "12:00 to 14:59", 10, 5],
-  ["ZRH", "Zurich - Switzerland", "12:00 to 14:59", 9, 6],
-  ["DXB", "Dubai International - United Arab Emirates", "12:00 to 14:59", 6, 4],
-  ["IST", "Istanbul - Turkey", "12:00 to 14:59", 8, 2],
-  ["HAM", "Hamburg - Germany", "15:00 to 17:59", 14, 6],
-  ["CPH", "Copenhagen - Denmark", "15:00 to 17:59", 8, 5],
-  ["MAD", "Madrid Barajas - Spain", "15:00 to 17:59", 7, 1],
-  ["FCO", "Rome Leonardo da Vinci-Fiumicino - Italy", "15:00 to 17:59", 9, 4],
-  ["PMI", "Palma de Mallorca - Spain", "15:00 to 17:59", 5, 5],
-  ["ARN", "Stockholm Arlanda - Sweden", "15:00 to 17:59", 6, 3],
-  ["BER", "Berlin Brandenburg Willy Brandt - Germany", "18:00 to 20:59", 14, 8],
-  ["LHR", "London Heathrow - United Kingdom", "18:00 to 20:59", 10, 10],
-  ["BCN", "Barcelona El Prat - Spain", "18:00 to 20:59", 8, 3],
-  ["CDG", "Paris Charles de Gaulle - France", "18:00 to 20:59", 8, 5],
-  ["LIS", "Lisbon Humberto Delgado - Portugal", "18:00 to 20:59", 6, 1],
-  ["ATH", "Athens - Greece", "18:00 to 20:59", 5, 2],
-  ["FRA", "Frankfurt - Germany", "21:00 to 23:59", 12, 4],
-  ["DUS", "Dusseldorf - Germany", "21:00 to 23:59", 8, 2],
-  ["OSL", "Oslo Gardermoen - Norway", "21:00 to 23:59", 5, 1],
-  ["BRU", "Brussels - Belgium", "21:00 to 23:59", 6, 3]
-];
-
-// Upcoming dates with scheduled arrivals per origin x timeband (from the current timeband onwards)
-var bandsToday = ["12:00 to 14:59", "15:00 to 17:59", "18:00 to 20:59", "21:00 to 23:59"];
-var bandsTomorrow = ["06:00 to 08:59", "09:00 to 11:59"];
-var rows = [];
-cells.forEach(function (c) {
-  if (bandsToday.indexOf(c[2]) > -1) rows.push(["18-11-2026"].concat(c));
-});
-cells.forEach(function (c) {
-  if (bandsTomorrow.indexOf(c[2]) > -1) rows.push(["19-11-2026"].concat(c));
-});
-
-function uniq(arr) { return arr.filter(function (v, i) { return arr.indexOf(v) === i; }); }
-
-function fill(id, values) {
-  var sel = document.getElementById(id);
-  values.forEach(function (v) {
-    var o = document.createElement("option");
-    o.value = v; o.textContent = v;
-    sel.appendChild(o);
-  });
-}
-fill("fDate", uniq(rows.map(function (r) { return r[0]; })));
-fill("fOrigin", uniq(rows.map(function (r) { return r[1]; })).sort());
-fill("fBand", ["00:00 to 02:59", "03:00 to 05:59", "06:00 to 08:59", "09:00 to 11:59",
-  "12:00 to 14:59", "15:00 to 17:59", "18:00 to 20:59", "21:00 to 23:59"]);
-
-function renderPlan() {
-  var fd = document.getElementById("fDate").value;
-  var fo = document.getElementById("fOrigin").value;
-  var fb = document.getElementById("fBand").value;
-  var fc = document.getElementById("fDone").value;
-  var html = "";
-  rows.forEach(function (r) {
-    var date = r[0], code = r[1], name = r[2], band = r[3], quota = r[4], done = r[5];
-    var missing = done - quota;
-    var p = Math.round(done / quota * 100);
-    var complete = done >= quota ? "Yes" : "No";
-    if (fd && fd !== date) return;
-    if (fo && fo !== code) return;
-    if (fb && fb !== band) return;
-    if (fc && fc !== complete) return;
-    var cls = p < 75 ? " class='pink'" : "";
-    html += "<tr" + cls + "><td>" + date + "</td><td>" + code + " (" + name + ")</td><td>" + band +
-      "</td><td class='num'>" + quota + "</td><td class='num'>" + done + "</td><td class='num'>" + missing +
-      "</td><td class='num'>" + p + "</td><td>" + complete + "</td></tr>";
-  });
-  document.querySelector("#plan tbody").innerHTML =
-    html || "<tr><td colspan='8'>No rows match the selected filters.</td></tr>";
-}
-["fDate", "fOrigin", "fBand", "fDone"].forEach(function (id) {
-  document.getElementById(id).addEventListener("change", renderPlan);
-});
-renderPlan();
-</script>
+    <div class="section-title" id="plan_title"></div>
+     <div id="dashboardPlan_div">
+      <!--Divs that will hold each control and chart-->
+      <div id="filterDate_div"></div>
+      <div id="filterTerminal_div"></div>
+      <div id="filterOrigin_div"></div>
+      <div id="filterTimeband_div"></div>
+      <div id="filterCompleted_div"></div>
+      <br>
+      <div id="tablePlan_div"></div>
+    </div>
 </body>
 </html>

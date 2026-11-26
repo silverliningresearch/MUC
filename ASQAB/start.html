@@ -1,17 +1,662 @@
 <html>
     <head>
-		<title>ASQ Departures Survey</title>
+		<title>ASQ Departures</title> 
     <link rel="icon" type="image/x-icon" href="images/favicon.svg">
   
+    <!-- non-ASQ (PEI AB / PEI AN)
+    <script src="data/quota_data.js"></script>
+    <script src="data/invalid_cases.js"></script>
+    -->
+    <!-- flight list -->
+    <script src="data/MUC_departures_flight_list.js"></script>		
+    <!-- non-ASQ (PEI AB / PEI AN)
+    <script src="scripts/PrepareData.js"></script>
+		<script src="scripts/CalculateData.js"></script>
+    <script src="scripts/CalculateDataArrival.js"></script>
+    <script src="scripts/flight_search.js"></script>
+    -->
+
+    <script src="scripts/PrepareData_ASQ.js"></script>
+    <script src="scripts/CalculateData_ASQ.js"></script>
+    
+    <!-- gate info -->
+    <script type="text/javascript" src="https://silverliningresearch.github.io/daily_plan_data_sur_v3/MUC_PEIAB/MUC_Gate_Info.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <link href="css/styles_v2.css" rel ="stylesheet" type="text/css" />
+    <style>
+      .custom_filter{
+        font-size: 15px;
+        padding: 10px 8px 10px 14px;
+        background: #eee;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        overflow: hidden;
+        position: relative;
+      }
 
+      .custom_filter .select{
+        width: 120%;
+        background:url('arrow.png') no-repeat;
+        background-position:80% center;
+      }
+
+      .custom_filter .select select{
+        background: transparent;
+        line-height: 1;
+        border: 0;
+        padding: 0;
+        border-radius: 0;
+        width: 120%;
+        position: relative;
+        z-index: 10;
+        font-size: 1em;
+      }
+
+      .table-font {
+        font-size: 16px;
+        /* height: 18px; */
+      }
+
+      .filter-font {
+        font-size: 16px;
+        /* height: 18px; */
+      }
+
+
+    /* Make the actual dropdown or input box bigger */
+    .massive-filter-style input {
+      height: 20px; /* Taller input boxes */
+    }
+
+
+      .button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        width: 300px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+
+      .red {background-color: #f44336;;} /* Red */
+      .blue {background-color: #0693e3;} /* Blue */ 
+
+
+      .headerbackground {background-color: #66CCFF;;} /* Blue */ 
+      
+
+      h1 {text-align: center;}
+
+      .section-title {
+        font-weight: bold;
+        margin: 34px 0 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .src { font-weight: normal; font-size: 14px; color: #666; font-family: Arial, Helvetica, sans-serif; }
+      .chip {
+        display: inline-block;
+        margin-left: 8px;
+        padding: 2px 10px;
+        border-radius: 12px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 13px;
+        font-weight: bold;
+        vertical-align: middle;
+      }
+      .chip.ok { background: #dff2df; color: #1e6b1e; }
+      .chip.low { background: #fff0c2; color: #7a5a00; }
+      .chip.high { background: #ffd6d6; color: #a40000; }
+
+
+    </style>
+
+        <!-- >>>Datagateway -->
+   <script type="text/javascript">
+    // Configuration for fallback system
+    const CONFIG_URL = 'https://raw.githubusercontent.com/silverliningresearch/aptgateway/main/config.json?t=' + new Date().getTime();
+    let prj ="MUC_ASQD";
+    
+    // Global variables to store config and data sources
+    let gatewayConfig = null;
+    let dataSourceBase = '';
+    let requiresToken = false;
+    let userToken = '';
+    let chartsReady = false;
+    let dataReady = false;
+
+    // Parse token from URL query parameter
+    function getTokenFromURL() {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      return urlParams.get('token') || '';
+    }
+
+    // Get token on page load
+    userToken = getTokenFromURL();
+
+    if (userToken) {
+      console.log('Token found in URL');
+    } else {
+      console.log('No token in URL - will use fallback mode if token is required');
+    }
+
+    // Fetch configuration and load data scripts
+    async function loadConfiguration() {
+      try {
+        const response = await fetch(CONFIG_URL);
+        gatewayConfig = await response.json();
+
+        // Determine data source based on mode
+        if (gatewayConfig.mode === 'primary') {
+          dataSourceBase = gatewayConfig.primary.url;
+          requiresToken = gatewayConfig.primary.requiresToken;
+        } else if (gatewayConfig.mode === 'fallback') {
+          dataSourceBase = gatewayConfig.fallback.url;
+          requiresToken = gatewayConfig.fallback.requiresToken;
+        }
+
+        // If token is required but not provided - warn
+        if (requiresToken && !userToken) {
+          console.warn('Token required but not provided.');
+        }
+
+        // Display current mode for debugging
+        console.log(`Gateway Mode: ${gatewayConfig.mode}`);
+        console.log(`Data Source: ${dataSourceBase}`);
+        console.log(`Requires Token: ${requiresToken}`);
+
+      } catch (error) {
+        console.error('Error loading configuration:', error);
+        alert('Failed to load gateway configuration. Application cannot start.');
+        return; // Stop execution if config fails
+      }
+
+      // Load data scripts dynamically
+      try {
+        // Check for Mixed Content (HTTPS page loading HTTP content)
+        if (window.location.protocol === 'https:' && dataSourceBase.startsWith('http:')) {
+          const msg = 'Security Error: Cannot load insecure (HTTP) data from a secure (HTTPS) page. Please use HTTP or update the server to HTTPS.';
+          console.error(msg);
+          alert(msg);
+          return;
+        }
+
+        await loadDataScripts();
+      } catch (error) {
+        console.error('Error loading data scripts:', error);
+        alert(`Failed to load data scripts: ${error.message}\nPlease check your connection or token.`);
+      }
+    }
+
+    // Load data scripts based on configuration
+    async function loadDataScripts() {
+      // Build URLs with or without token
+      let interviewStatsUrl, flightListUrl, quotaAirlineDestUrl,  quotaAirlineUrl,  quotaDestUrl;
+      let quotaDataUrl, invalidCasesUrl, quotaTimeOriginUrl, locationCountUrl;
+
+      if (requiresToken && userToken) {
+        // Primary server with token
+        interviewStatsUrl = `${dataSourceBase}/${prj}/interview_statistics_asq.js?token=${userToken}`;
+        quotaAirlineDestUrl = `${dataSourceBase}/${prj}/ASQ_Quota_Airline_Dest.js?token=${userToken}`;
+        quotaAirlineUrl = `${dataSourceBase}/${prj}/ASQ_Quota_Airlines.js?token=${userToken}`;
+        quotaDestUrl = `${dataSourceBase}/${prj}/ASQ_Quota_Dest.js?token=${userToken}`;
+      } else {
+        // Fallback GitHub repository without token
+        interviewStatsUrl = `${dataSourceBase}/${prj}/interview_statistics_asq.js`;
+        quotaAirlineDestUrl = `${dataSourceBase}/${prj}/ASQ_Quota_Airline_Dest.js`;
+        quotaAirlineUrl = `${dataSourceBase}/${prj}/ASQ_Quota_Airlines.js`;
+        quotaDestUrl = `${dataSourceBase}/${prj}/ASQ_Quota_Dest.js`;
+      }
+
+      // Load remote data scripts via fetch+eval to bypass MIME type restriction
+      try {
+        console.log('Loading script:', interviewStatsUrl);
+        await fetchAndEval(interviewStatsUrl);
+        await fetchAndEval(quotaAirlineDestUrl);
+        await fetchAndEval(quotaAirlineUrl);
+        await fetchAndEval(quotaDestUrl);
+
+        console.log('Remote data scripts loaded successfully');
+
+      } catch (error) {
+        console.error('Error loading remote data scripts:', error);
+        throw error;
+      }
+
+      // Load logic scripts after data scripts are loaded
+      try {
+        await loadScript('scripts/CalculateData_ASQ.js');
+        await loadScript('scripts/PrepareData_ASQ.js');
+        console.log('Logic scripts loaded successfully');
+      } catch (error) {
+        console.error('Error loading logic scripts:', error);
+        throw error;
+      }
+
+      // Signal that data is ready
+      dataReady = true;
+      console.log('Data ready');
+      attemptDraw();
+    }
+
+    // Fetch a JS file as text and eval it (bypasses MIME type restriction from raw.githubusercontent.com)
+    // Uses globalThis assignment to escape function scope (let/var inside a function eval are NOT global)
+    function fetchAndEval(url) {
+      return fetch(url)
+        .then(response => {
+          if (!response.ok) throw new Error(`HTTP ${response.status} for ${url}`);
+          return response.text();
+        })
+        .then(code => {
+          // Replace first `let/const/var varName` declaration with `globalThis.varName`
+          // so the variable is accessible globally after eval
+          const globalCode = code.replace(/^\s*(let|const|var)\s+(\w+)/, 'globalThis.$2');
+          eval(globalCode);
+        });
+    }
+
+    // Helper function to load a script dynamically (for local scripts)
+    function loadScript(src) {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = resolve;
+        script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
+        document.head.appendChild(script);
+      });
+    }
+
+    function onChartsLoaded() {
+      console.log('Google Charts loaded');
+      chartsReady = true;
+      attemptDraw();
+    }
+
+    function attemptDraw() {
+      if (chartsReady && dataReady) {
+        console.log('Both Charts and Data ready. Drawing table...');
+        drawTable();
+      } else {
+        console.log(`Waiting... Charts: ${chartsReady}, Data: ${dataReady}`);
+      }
+    }
+
+    // Start loading configuration when the page loads
+    window.onload = loadConfiguration;
+  </script>
+  <!-- <<<Datagateway -->
+
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      function isNextDay()
+      {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+
+        //?nextday=true
+        return(urlParams.has('nextday'));
+      }
+      //google.charts.load('current', {'packages':['table']});
+      google.charts.load('current', {'packages':['table','corechart', 'controls']});
+      google.charts.setOnLoadCallback(onChartsLoaded);
+
+      function drawTable() {
+        CalculateAirportAirLineReport_asq();
+
+        // non-ASQ (PEI AB / PEI AN)
+        // CalculateAirportAirLineReport();
+        // CalculateArrival();
+        // for (i = 0; i < daily_plan_data.length; i++) {
+        //   daily_plan_data[i].Survey = "PEI AB";
+        //   daily_plan_data[i].ASQ_remark = "";
+        // }
+
+        var daily_plan_data = [];
+        for (i = 0; i < daily_plan_data_asq.length; i++) {
+          if ((daily_plan_data_asq[i].Difference < 0)  //airline-dest still missing data
+              ||(daily_plan_data_asq[i].Priority > 0)) // or either airline or dest still missing data
+          {
+            daily_plan_data_asq[i].Survey = "ASQ";
+            daily_plan_data_asq[i].Quota_Completed = "No";
+            daily_plan_data_asq[i].Flight = daily_plan_data_asq[i].Flight_Show;
+            daily_plan_data.push(daily_plan_data_asq[i]);
+          }
+          else{
+            daily_plan_data_asq[i].Survey = "ASQ";
+            daily_plan_data_asq[i].Quota_Completed = "Yes";
+            daily_plan_data_asq[i].Flight = daily_plan_data_asq[i].Flight_Show;
+            daily_plan_data.push(daily_plan_data_asq[i]);
+          }
+        }
+
+        var data = new google.visualization.DataTable();
+
+        // data.addColumn('string', 'Survey'); // ASQ only, column not needed
+        data.addColumn('string', 'Date');
+        data.addColumn('string', 'Time');
+        data.addColumn('number', 'TER');
+        data.addColumn('string', 'Gate Area');
+        data.addColumn('string', 'Gate');        
+        data.addColumn('string', 'Flight');
+        data.addColumn('string', 'To');
+        //data.addColumn('string', 'Via');
+        //data.addColumn('string', 'DOOP');
+        data.addColumn('number', 'Remaining Flights');
+        data.addColumn('number', 'Quota');
+        data.addColumn('number', 'Completed');
+				data.addColumn('number', 'Missing');
+        data.addColumn('number', 'Completed %');
+        data.addColumn('string', 'Quota Completed?');
+
+        if (is_the_last_month_of_Quarter_asq()) {
+          data.addColumn('string', 'ASQ Notes');
+        }
+        data.addColumn('number', 'Priority Score');
+        data.addColumn('number', 'Priority');
+
+        //sort ascending
+        daily_plan_data.sort(function(a, b) {
+          return (parseFloat(a.Date_Time) - parseFloat(b.Date_Time));
+        });
+
+        //add data
+        for (i = 0; i < daily_plan_data.length; i++) {
+          var row = daily_plan_data[i];
+            { 
+              if (is_the_last_month_of_Quarter_asq()) {
+                data.addRows([[
+                // row.Survey,
+                row.Date,
+                row.Time, 
+                row.TER, row.GateArea, row.Gate,
+                row.Flight, row.DestName, 
+                //row.Next, 
+                //row.doop, 
+                Number(row.remaining_flights), 
+                Number(row.Quota), Number(row.Completed), Number(row.Difference), 
+                Number(row.Completed_percent), 
+                row.Quota_Completed,
+                row.ASQ_missing,
+                Number(row.Prioritisation_score), 
+                Number(row.Priority)]]);
+              }
+              else{
+                data.addRows([[
+                // row.Survey,
+                row.Date,
+                row.Time, 
+                row.TER, row.GateArea, row.Gate,
+                row.Flight, row.DestName, 
+                //row.Next, 
+                //row.doop, 
+                Number(row.remaining_flights), 
+                Number(row.Quota), Number(row.Completed), Number(row.Difference), 
+                Number(row.Completed_percent), 
+                row.Quota_Completed,
+                //row.ASQ_missing,
+                Number(row.Prioritisation_score), 
+                Number(row.Priority)]]);
+              }
+            }
+          }
+
+          //highlight priority one
+          var priority_col = data.getNumberOfColumns()-1; //last one
+          var remaining_flights_col = data.getNumberOfColumns()-7; 
+          for (var i = 0; i < data.getNumberOfRows(); i++) {
+            for (j=0; j < data.getNumberOfColumns(); j++) {
+              if (data.getValue(i, priority_col) ==1) 
+              {
+                data.setProperty(i, j, 'style', 'background-color:#FFCCCB');
+              }
+              else if ( data.getValue(i, priority_col) ==2) 
+              {
+                data.setProperty(i, j, 'style', 'background-color:#F67052');
+              }
+            }
+          }
+
+        //create a dashboard.
+        var dashboard = new google.visualization.Dashboard(
+        document.getElementById('dashboard_div'));
+
+        // survey filter: ASQ only, not needed
+        // var options_Survey = {
+        //   'filterColumnLabel': 'Survey',
+        //   "ui": {"label": "",
+        //   "labelStacking": 'horizotal',
+        //   "caption": "Select Survey:",
+        //    "height": "16px",
+        //   },
+        // };
+        // var tableFilter_Survey = new google.visualization.ControlWrapper({
+        //   'controlType': 'CategoryFilter',
+        //   'containerId': 'filter_survey',
+        //   'options': options_Survey,
+        //   state: {
+        //       selectedValues: ['PEI AB']
+        //   }
+        // });
+
+
+          //create fiter terminal 
+          var options_Terminal = {
+          'filterColumnLabel': 'TER',
+          "ui": {"label": "", 
+                "labelStacking": 'horizotal',
+                "caption": "Select Terminal",
+                }
+        };
+
+        var tableFilter_Terminal = new google.visualization.ControlWrapper({
+          'controlType': 'CategoryFilter',
+          'containerId': 'filter_terminal',
+          'options': options_Terminal
+        });
+        
+        var gate_options = {
+          'filterColumnLabel': 'Gate Area',
+          "ui": {"label": "", 
+                "labelStacking": 'horizotal',
+                "caption": "Select Gate Area",
+                }
+        };
+
+        var gateFilter = new google.visualization.ControlWrapper({
+          'controlType': 'CategoryFilter',
+          'containerId': 'filter_gate',
+          'options': gate_options
+        });
+
+        var date_options = {
+          'filterColumnLabel': 'Date',
+          "ui": {"label": "", 
+                "labelStacking": 'horizotal',
+                "caption": "Select Date",
+                }
+        };
+
+        var dateFilter = new google.visualization.ControlWrapper({
+          'controlType': 'CategoryFilter',
+          'containerId': 'filter_date',
+          'options': date_options
+        });
+
+        var quota_completed_options = {
+          'filterColumnLabel': 'Quota Completed?',
+          "ui": {"label": "", 
+                "labelStacking": 'horizotal',
+                "caption": "Completed quota:",
+                }
+        };
+
+        var quota_completedFilter = new google.visualization.ControlWrapper({
+          'controlType': 'CategoryFilter',
+          'containerId': 'filter_quota_completed',
+          'options': quota_completed_options,
+           state: {
+              selectedValues: ['No']
+            }
+        });
+
+        // Create table
+        var tableChart = new google.visualization.ChartWrapper({
+          'chartType': 'Table',
+          'containerId': 'table_div',
+          'options': {
+            'allowHtml': true, 
+            //'cssClassNames': {tableCell: 'table-font', headerRow: 'table-font', headerCell: 'googleHeaderCell' },
+            'cssClassNames': {tableCell: 'table-font', headerRow: 'headerbackground', headerCell: 'googleHeaderCell' },
+            //'sortColumn': 1, //time
+            'showRowNumber': false, 'width': '100%', 'height': '100%'
+          }
+        });
+
+        dashboard.bind([/*tableFilter_Survey,*/ tableFilter_Terminal, gateFilter, dateFilter, quota_completedFilter], tableChart);
+
+        var view = new google.visualization.DataView(data);
+        view.hideColumns([priority_col, priority_col-1]); //hide priority one
+        //document.getElementById("filter_div").style.display = "none";
+        dashboard.draw(view);
+
+        //Update time info
+        //document.getElementById("download_time_ab").innerHTML = "Data updated at: " + download_time_ab;
+
+        // non-ASQ (PEI AB / PEI AN) status
+        // var overall_status =  "PEI AB: " + "Total quota: " + total_quota;
+        // overall_status += " - Total completed: " + total_completed ;
+        // overall_status +=  " (" + total_completed_percent +  "%)" ;
+        // document.getElementById("overall_status").innerHTML =overall_status;
+        //
+        // var overall_arrival_status =  "PEI AN: " + "Total quota: " + total_arrival_quota;
+        // overall_arrival_status += " - Total completed: " + total_arrival_completed;
+        // overall_arrival_status +=  " (" + total_arrival_completed_percent +  "%)"+ " | " + "Data updated at: " + download_time_an;;
+        // document.getElementById("overall_arrival_status").innerHTML =overall_arrival_status;
+
+        // old single-line ASQ status, replaced by section 1 below (same as MUC_ASQA)
+        // var overall_status_asq =  "ASQ: " + "Total quota: " + total_quota_asq;
+        // overall_status_asq += " - Total completed: " + total_completed_asq ;
+        // overall_status_asq +=  " (" + total_completed_percent_asq +  "%)" + " | " + "Data updated at: " + download_time_asq;;
+        // document.getElementById("overall_status_asq").innerHTML =overall_status_asq;
+
+        //today status
+        var today_status = "ASQ Departures today (" + currentDate + "): Completed: " + total_completed_today_asq;
+        // soft target
+        if (total_completed_today_asq < 6) today_status += " <span class='chip low'>Below soft target of 6 to 18 per day</span>";
+        else if (total_completed_today_asq > 18) today_status += " <span class='chip high'>Above soft target of 6 to 18 per day</span>";
+        else today_status += " <span class='chip ok'>Within soft target of 6 to 18 per day</span>";
+        document.getElementById("asq_today_status").innerHTML = today_status;
+
+        //month status
+        var month_status = "ASQ Departures month (" + currentMonth + "-" + currentYear + "): Quota: " + total_quota_month_asq;
+        month_status += " - Completed: " + total_completed_month_asq;
+        month_status += " (" + (100*total_completed_month_asq/total_quota_month_asq).toFixed(0) + "%)";
+        month_status += " - Missing: " + Math.max(0, total_quota_month_asq - total_completed_month_asq);
+        document.getElementById("asq_month_status").innerHTML = month_status;
+
+        //quarter status
+        var quarter_status = "ASQ Departures quarter (" + currentQuarter + "): Quota: " + total_quota_asq;
+        quarter_status += " - Completed: " + total_completed_asq;
+        quarter_status += " (" + total_completed_percent_asq + "%)";
+        quarter_status += " - Missing: " + Math.max(0, total_quota_asq - total_completed_asq);
+        document.getElementById("asq_quarter_status").innerHTML = quarter_status;
+
+        // live data status
+        document.getElementById("data_status").innerHTML = "Live data from the ASQ Survey in the SMT tool | SMT data updated at: " + download_time_asq;
+      }
+    
+    // non-ASQ: PEI AB survey links
+    // function start_new_interview() {
+    //   console.log("start_new_interview");
+    //   window.localStorage.clear();
+    //   let url = "https://silverliningresearch.github.io/MUC/PEIAB/survey.html";
+    //   window.location.href = url;
+    // }
+    //
+    // function resume_curent_interview() {
+    //   console.log("resume_curent_interview");
+    //   let url = "https://silverliningresearch.github.io/MUC/PEIAB/survey.html";
+    //   window.location.href = url;
+    // }
+
+      function registerInterview() {
+            console.log("Registering interview");
+            var url = "#"; // TODO: link to the Registration survey in Survalyzer.
+            window.location.href = url;
+        }
+    </script>
   </head>
-
   <body>
+
+    </br>
+      <h2 style="text-align: center;">ASQ Departures Survey</h2>
+    </br>
+    <div style="text-align: center;">
+        <button class="button red" onclick="registerInterview()">Register a completed ASQ interview</button>
+    </div>
+    <br>
+  <!-- non-ASQ: PEI AB survey buttons
+  <div align="center">
+    <button onclick="start_new_interview()" class="button red">Start a new interview</button>
+    <button onclick="resume_curent_interview()" class="button blue">Resume the current interview </button>
+  </div>
   <p>
-  </br>
-    <h2 align="center">	ASQ Departures Survey</h2>
-  </br>
- </p>
+	</br>
+    *<strong>Resume the current interview</strong> will continue from the last question in the current interview.</br>
+	</br>
+  </p>
+  -->
+
+    <div style="background-color:#66CCFF;">
+      </br>
+    </div>
+
+    <!-- non-ASQ (PEI AB / PEI AN) status
+    <h4 id="overall_status"></h4>
+    <h4 id="overall_arrival_status"></h4>
+    -->
+
+    <!-- <h4 id="overall_status_asq"></h4> -->
+    <div>
+      <p class="section-title" id="asq_today_status"></p>
+      <p class="section-title" id="asq_month_status"></p>
+      <p class="section-title" id="asq_quarter_status"></p>
+      <p class="src" id="data_status"></p>
+    </div>
+
+<!--     
+    <div class="custom_filter">
+      <label for="show_hide_closed_target">Show fligths with closed target:</label>
+      <select id="show_hide_closed_target" onchange="drawTable()">
+        <option value="No">No		
+        <option value="Yes">Yes
+      </select>
+    </div> -->
+
+    <div id="dashboard_div">
+      <!--Divs that will hold each control and chart-->
+      <!-- <div id="filter_survey"></div> -->
+      <div id="filter_terminal"></div>
+      <div id="filter_gate" style="font-size: 15px"> </div>
+      <div id="filter_date" style="font-size: 15px"> </div>
+      <div id="filter_quota_completed" style="font-size: 15px"> </div>
+
+      </br>
+      <div id="table_div"></div>
+    </div>
+
   </body>
 </html>

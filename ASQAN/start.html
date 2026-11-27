@@ -376,12 +376,13 @@
         var priority_col = data.getNumberOfColumns()-1; //last one
         for (var i = 0; i < data.getNumberOfRows(); i++) {
           for (j=0; j < data.getNumberOfColumns(); j++) {
-            if (data.getValue(i, priority_col) ==1)
+            if (data.getValue(i, priority_col) ==1) 
             {
               data.setProperty(i, j, 'style', 'background-color:#FFCCCB');
             }
-            else {
-              data.setProperty(i, j, 'style', 'background-color:#FFFFFF');
+            else if ( data.getValue(i, priority_col) ==2) 
+            {
+              data.setProperty(i, j, 'style', 'background-color:#F67052');
             }
           }
         }
@@ -545,7 +546,7 @@
     <script>
         function registerInterview() {
             console.log("Registering interview");
-            var url = "#"; // TODO: link to the Registration survey in Survalyzer.
+            var url = "https://silverlining.survalyzer.eu/vhclgwphcd";
             window.location.href = url;
         }
     </script>

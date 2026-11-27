@@ -70,10 +70,19 @@ function initCurrentTimeVars_asq() {
       currentQuarter = document.getElementById('year_month').value;
     }
   }
+
+  switch(currentMonth) {
+    case "01":
+    case "02":
+    case "03":
+    default:
+      total_quota_month_asq = 300; 
+      break;
+  }
  
   switch(currentQuarter) {
     default:
-      total_quota_asq = 900; // mockup quota
+      total_quota_asq = 900; 
       break;
   }
 }

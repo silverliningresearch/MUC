@@ -143,7 +143,7 @@ function CalculateAirportAirLineReport_asq() {
       }
     } 
     
-    //       Spec: show all rows (Yes and No). Push every row here: daily_plan_data_temp.push(row);
+    // Spec: show all rows (Yes and No). Push every row here
     // if (row.Difference<0 ||  row.Airline_Difference<0  || row.Dest_Difference<0 ) {
     //   daily_plan_data_temp.push(row);
     // }
@@ -173,94 +173,96 @@ function CalculateAirportAirLineReport_asq() {
   for (i = 0; i < daily_plan_data_temp.length; i++) {
     row = daily_plan_data_temp[i];
     // row.Priority = 0;
+
+    // highlight logic for the last month of the quarter, and for 30% of the total list.
+    if ((daily_plan_data_temp[i].Difference < 0)
+      ||(daily_plan_data_temp[i].Airline_Difference < 0)
+      ||(daily_plan_data_temp[i].Dest_Difference < 0)
+    )
+    {
+      row = daily_plan_data_temp[i];
+      // row.Priority = 0;
+      daily_plan_data_asq.push(row);
+      if((count < daily_plan_data_temp.length*0.3)  //hightlight 30% of the total list
+         || is_2nd_hafl_of_the_quarter_asq())       //hightlight all in the 2nd half of the quarter 
+      {
+        //-	Flights with a quota target less than 4 should never be red
+        //-	Flights with a completion percentage of ≥85% should never be red
+        if (row.dest_airline_still_missing==1) //dest_airline
+        {
+          count++;
+          row.Priority = 1;
+          row.ASQ_missing = ""; 
+        }
+        else 
+        {
+          if ((row.Airline_Quota>=4) && (row.Airline_Completed_percent<85)) //airline
+          {
+            //console.log("Airline_Quota: ", row.AirlineCode);
+            //console.log("Airline_Completed_percent: ", row.Airline_Completed_percent);
+            //only highlight if the dest_airlines this Airline belong to not hightlighted yet
+            var found = 0;
+            for (var k = 0; k < daily_plan_data_temp.length; k++) 
+            {
+              if ((daily_plan_data_temp[k].AirlineCode == row.AirlineCode) && (daily_plan_data_temp[k].dest_airline_still_missing==1)
+              &&  (daily_plan_data_temp[k].Completed_percent<85)) //completed of airline-dest
+              {
+                found = 1;
+                break;
+              }
+            }
+            if ((found==0) && (row.Airline_Completed_percent<85)) {//airline
+              count++; 
+              //row.Priority = 3;
+              row.ASQ_missing = row.AirlineCode + " (missing " +  row.Airline_Difference + ")";            
+            }
+          } 
+          
+          if ((row.Dest_Quota>=4) && (row.Dest_Completed_percent<85)) //Dest
+          {
+            //only highlight if the dest_airlines this Dest belong to not hightlighted yet
+            var found = 0;
+            for (var k = 0; k < daily_plan_data_temp.length; k++) 
+            {
+              if ((daily_plan_data_temp[k].Dest == row.Dest) && (daily_plan_data_temp[k].dest_airline_still_missing==1))
+              {
+                found = 1;
+                break;
+              }
+            }
+            if ((found==0) &&  (row.Dest_Completed_percent<85)) { //Dest
+              count++; 
+              if (is_the_last_month_of_Quarter_asq()) row.Priority = 3;
+              row.ASQ_missing = row.Dest + " (missing " +  row.Dest_Difference + ")";            
+            }
+          }
+          
+        }
+
+        if ((row.Priority == 1))
+        {
+          if ((row.remaining_flights <20) 
+              ||(is_the_last_month_of_Quarter_asq()) //dark red hightlight in the last month of the quarter
+             )
+          {
+            row.Priority = 2;
+          }
+        }
+
+        if ((row.Priority == 3)) 
+        { 
+          if (is_the_last_month_of_Quarter_asq()) //normal red hightlight in the last month of the quarter
+          {
+            row.Priority = 1;
+          }
+        }
+      }
+
+
+    }
+    else{
     daily_plan_data_asq.push(row);
-
-    // contain custom highlight logic for the last month of the quarter, and for 30% of the total list. This is not in the spec.
-    // if ((daily_plan_data_temp[i].Difference < 0)
-    //   ||(daily_plan_data_temp[i].Airline_Difference < 0)
-    //   ||(daily_plan_data_temp[i].Dest_Difference < 0)
-    // )
-    // {
-    //   row = daily_plan_data_temp[i];
-    //   // row.Priority = 0;
-    //   daily_plan_data_asq.push(row);
-    //   if((count < daily_plan_data_temp.length*0.3)  //hightlight 30% of the total list
-    //      || is_2nd_hafl_of_the_quarter_asq())       //hightlight all in the 2nd half of the quarter 
-    //   {
-    //     //-	Flights with a quota target less than 4 should never be red
-    //     //-	Flights with a completion percentage of ≥85% should never be red
-    //     if (row.dest_airline_still_missing==1) //dest_airline
-    //     {
-    //       count++;
-    //       row.Priority = 1;
-    //       row.ASQ_missing = ""; 
-    //     }
-    //     else 
-    //     {
-    //       if ((row.Airline_Quota>=4) && (row.Airline_Completed_percent<85)) //airline
-    //       {
-    //         //console.log("Airline_Quota: ", row.AirlineCode);
-    //         //console.log("Airline_Completed_percent: ", row.Airline_Completed_percent);
-    //         //only highlight if the dest_airlines this Airline belong to not hightlighted yet
-    //         var found = 0;
-    //         for (var k = 0; k < daily_plan_data_temp.length; k++) 
-    //         {
-    //           if ((daily_plan_data_temp[k].AirlineCode == row.AirlineCode) && (daily_plan_data_temp[k].dest_airline_still_missing==1)
-    //           &&  (daily_plan_data_temp[k].Completed_percent<85)) //completed of airline-dest
-    //           {
-    //             found = 1;
-    //             break;
-    //           }
-    //         }
-    //         if ((found==0) && (row.Airline_Completed_percent<85)) {//airline
-    //           count++; 
-    //           //row.Priority = 3;
-    //           row.ASQ_missing = row.AirlineCode + " (missing " +  row.Airline_Difference + ")";            
-    //         }
-    //       } 
-          
-    //       if ((row.Dest_Quota>=4) && (row.Dest_Completed_percent<85)) //Dest
-    //       {
-    //         //only highlight if the dest_airlines this Dest belong to not hightlighted yet
-    //         var found = 0;
-    //         for (var k = 0; k < daily_plan_data_temp.length; k++) 
-    //         {
-    //           if ((daily_plan_data_temp[k].Dest == row.Dest) && (daily_plan_data_temp[k].dest_airline_still_missing==1))
-    //           {
-    //             found = 1;
-    //             break;
-    //           }
-    //         }
-    //         if ((found==0) &&  (row.Dest_Completed_percent<85)) { //Dest
-    //           count++; 
-    //           if (is_the_last_month_of_Quarter_asq()) row.Priority = 3;
-    //           row.ASQ_missing = row.Dest + " (missing " +  row.Dest_Difference + ")";            
-    //         }
-    //       }
-          
-    //     }
-
-    //     if ((row.Priority == 1))
-    //     {
-    //       if ((row.remaining_flights <20) 
-    //           ||(is_the_last_month_of_Quarter_asq()) //dark red hightlight in the last month of the quarter
-    //          )
-    //       {
-    //         row.Priority = 2;
-    //       }
-    //     }
-
-    //     if ((row.Priority == 3)) 
-    //     { 
-    //       if (is_the_last_month_of_Quarter_asq()) //normal red hightlight in the last month of the quarter
-    //       {
-    //         row.Priority = 1;
-    //       }
-    //     }
-    //   }
-
-
-    // }
+    }
   }
 }
 
